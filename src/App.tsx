@@ -1,8 +1,13 @@
-import React from 'react'
+import { MantineProvider } from '@mantine/core'
+import Navigation from './components/Navigation'
+import { Hero } from './components/Hero'
 
 const App = () => {
   return (
-    <div>App</div>
+    <MantineProvider withGlobalStyles theme={{ fontFamily: "Poppins, sans-serif", }}>
+      <Navigation />
+      <Hero />
+    </MantineProvider>
   )
 }
 
