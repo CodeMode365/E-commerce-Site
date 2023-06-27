@@ -1,9 +1,9 @@
-import { createStyles, Overlay, Container, Title, Button, Text, rem } from '@mantine/core';
+import { createStyles, Overlay, Container, Group, Title, Button, Text, rem } from '@mantine/core';
 
 const useStyles = createStyles((theme) => ({
   hero: {
     position: 'relative',
-    backgroundImage:"../assets/clothes.jpg",
+    backgroundImage: "url('./src/assets/clothes.jpg')",
     backgroundSize: 'cover',
     backgroundPosition: 'center',
   },
@@ -13,7 +13,7 @@ const useStyles = createStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-end',
-    alignItems: 'flex-start',
+    alignItems: 'center',
     paddingBottom: `calc(${theme.spacing.xl} * 6)`,
     zIndex: 1,
     position: 'relative',
@@ -29,6 +29,7 @@ const useStyles = createStyles((theme) => ({
     fontSize: rem(60),
     fontWeight: 900,
     lineHeight: 1.1,
+    textAlign: "center",
 
     [theme.fn.smallerThan('sm')]: {
       fontSize: rem(40),
@@ -53,6 +54,12 @@ const useStyles = createStyles((theme) => ({
 
   control: {
     marginTop: `calc(${theme.spacing.xl} * 1.5)`,
+    transition:".5s",
+    "&:hover": {
+      background: theme.colors.blue[7],
+      border:`1px solid ${theme.colors.blue[7]}`,
+      color:"white",
+    },
 
     [theme.fn.smallerThan('sm')]: {
       width: '100%',
@@ -71,13 +78,13 @@ export function Hero() {
         zIndex={0}
       />
       <Container className={classes.container}>
-        <Title className={classes.title}>A fully featured React components library</Title>
+        <Title className={classes.title}>Explore Best out of Bests<br /> Get More than what you expect</Title>
         <Text className={classes.description} size="xl" mt="xl">
-          Build fully functional accessible web applications faster than ever – Mantine includes
-          more than 120 customizable components and hooks to cover you in any situation
+          Fully Customized Ecommerce Store for Your Best Choices.
+          Choose what you want and we will take all risk to make it into your house.
         </Text>
 
-        <Button variant="gradient" size="xl" radius="xl" className={classes.control}>
+        <Button variant="outline" size="lg" radius="xl" className={classes.control}>
           Get started
         </Button>
       </Container>
