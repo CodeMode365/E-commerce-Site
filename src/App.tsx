@@ -2,6 +2,7 @@ import { MantineProvider } from '@mantine/core'
 import Navigation from './components/Navigation'
 import { Hero } from './components/Hero'
 import Markets from './components/Markets'
+import ItemShowCase from './components/ItemShowCase'
 
 const App = () => {
   return (
@@ -9,6 +10,7 @@ const App = () => {
       <Navigation />
       <Hero />
       <Markets />
+      <ItemShowCase />
     </MantineProvider>
   )
 }

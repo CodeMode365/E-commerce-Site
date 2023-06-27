@@ -1,6 +1,6 @@
 import { Carousel } from '@mantine/carousel';
 import { useMediaQuery } from '@mantine/hooks';
-import { createStyles, Paper, Text, Title, Button, useMantineTheme, rem, Center, Container } from '@mantine/core';
+import { Title, useMantineTheme, Container } from '@mantine/core';
 import CardContainer from './Card';
 
 // import Card from './Card'
@@ -9,47 +9,47 @@ import CardContainer from './Card';
 const data = [
     {
         image: "./src/assets/clothes.jpg",
-        title: 'Best forests to visit in North America',
+        title: 'Civil Mall',
         category: 'mall',
     },
     {
         image: "./src/assets/clothes.jpg",
-        title: 'Hawaii beaches review: better than you think',
+        title: 'KL Tower',
         category: 'godown',
     },
     {
         image: "./src/assets/clothes.jpg",
-        title: 'Mountains at night: 12 best locations to enjoy the view',
+        title: 'Swyambhu Super Store',
         category: 'mall',
     },
     {
         image: "./src/assets/clothes.jpg",
-        title: 'Mountains at night: 12 best locations to enjoy the view',
+        title: 'Bhatbhatenti, Chabhil',
         category: 'mall',
     },
     {
         image: "./src/assets/clothes.jpg",
-        title: 'Mountains at night: 12 best locations to enjoy the view',
+        title: 'Tokha Super Mart',
         category: 'mall',
     },
     {
         image: "./src/assets/clothes.jpg",
-        title: 'Mountains at night: 12 best locations to enjoy the view',
+        title: 'Bhatbhateni, lalitpur',
         category: 'mall',
     },
     {
         image: "./src/assets/clothes.jpg",
-        title: 'Mountains at night: 12 best locations to enjoy the view',
+        title: 'Bhatbhateni, Bhaktapur',
         category: 'store',
     },
     {
         image: "./src/assets/clothes.jpg",
-        title: 'Mountains at night: 12 best locations to enjoy the view',
+        title: 'Civil Mall',
         category: 'store',
     },
     {
         image: "./src/assets/clothes.jpg",
-        title: 'Mountains at night: 12 best locations to enjoy the view',
+        title: 'BG Mall',
         category: 'store',
     },
 
@@ -71,8 +71,9 @@ const Markets = () => {
                 breakpoints={[{ maxWidth: 'sm', slideSize: '100%', slideGap: 2 }]}
                 slideGap="xl"
                 align="start"
-                slidesToScroll={mobile ? 1 : 2}
-                // slidesToScroll={1}
+                // slidesToScroll={mobile ? 1 : 2}
+                slidesToScroll={1}
+                loop={true}
             >
                 {slides}
             </Carousel>
