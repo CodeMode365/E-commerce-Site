@@ -4,6 +4,7 @@ import { Hero } from './components/Hero'
 import Markets from './components/Markets'
 import ItemShowCase from './components/ItemShowCase'
 import About from './components/About'
+import Category from "./components/Category"
 
 const App = () => {
   return (
@@ -11,6 +12,7 @@ const App = () => {
       <Navigation />
       <Hero />
       <About />
+      <Category />
       <Markets />
       <ItemShowCase />
     </MantineProvider>

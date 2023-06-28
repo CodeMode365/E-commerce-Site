@@ -64,7 +64,7 @@ const Markets = () => {
         </Carousel.Slide>
     ));
     return (
-        <Container my={40}>
+        <Container my={40} size="md">
             <Title align='center' my={10}>Our Markets</Title>
             <Carousel
                 slideSize="33.33%"

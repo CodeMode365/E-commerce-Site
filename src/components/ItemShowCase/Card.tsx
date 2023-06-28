@@ -10,6 +10,14 @@ const ItemCard = () => {
   return (
     <Card shadow="sm" padding="lg" radius="md" withBorder>
       <Card.Section component="a" href="#" sx={{ cursor: "pointer" }} >
+        <Group spacing={"xs"} mx={"auto"} sx={{ position: "absolute", left: 5, zIndex: 50 }} mt={4}>
+          <Badge color="pink" variant="light" bg={"#dded"}>
+            Sale
+          </Badge>
+          <Badge color="pink" variant="light" bg={"#dded"}>
+            New
+          </Badge>
+        </Group>
         <Image
           src="https://images.unsplash.com/photo-1527004013197-933c4bb611b3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=720&q=80"
           height={160}
@@ -17,19 +25,11 @@ const ItemCard = () => {
         />
       </Card.Section>
 
-      <Group position="apart" mt="md" mb="xs">
-        <Text weight={500}>Black Resham T-shirt</Text>
-        <Text size="sm" color="dimmed">
+      <Group position="apart" mt={3} mb={2} align="center" h={40}>
+        <Text weight={500} my={0} mx={"auto"}>Black Resham T-shirt</Text>
+        <Text fz={12} p={0} color="dimmed" align="center" my={0} mx={"auto"} >
           Winter Light weight silk
         </Text>
-        <Group spacing={"sm"}>
-          <Badge color="pink" variant="light">
-            Sale
-          </Badge>
-          <Badge color="pink" variant="light">
-            New Arrival
-          </Badge>
-        </Group>
       </Group>
 
 

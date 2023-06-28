@@ -1,11 +1,14 @@
-import { Container, Flex, Group, Text, Image, Title } from '@mantine/core'
+import { Container, Flex, Text, Image, Title } from '@mantine/core'
 import { useTheme } from '@emotion/react'
+import { useMediaQuery } from '@mantine/hooks'
 
 const About = () => {
     const theme = useTheme()
+    const smallScreen = useMediaQuery('(min-width:56.25rem)')
+
     return (
-        <Container my={30}>
-            <Flex>
+        <Container my={30} sx={{minWidth:"80%", maxWidth:"56.75rem"}}>
+            <Flex direction={smallScreen ? "row" : "column"} >
                 <Image src={"./src/assets/clothes.jpg"} height={400} />
                 <Flex direction={"column"} ml={25}>
                     <Title>About <Text display={"inline"} color={theme.colors.blue[7]}>Our Store</Text></Title>
@@ -18,7 +21,7 @@ const About = () => {
                     </Text>
                 </Flex >
             </Flex>
-        </Container>
+        </Container >
     )
 }
 
