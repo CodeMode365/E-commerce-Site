@@ -26,12 +26,11 @@ const Index: React.FC = () => {
     <Container size={"md"} >
       <Title align='center'>Explore Your Category</Title>
       <Carousel
-        slideGap={smallScreen?0:"md"}
+        slideGap={smallScreen ? 0 : "md"}
         slidesToScroll={1}
-        slideSize={smallScreen?"25%":"40%"}
+        slideSize={smallScreen ? "25%" : "40%"}
         withControls={false}
         my={20}
-        initialSlide={2}
         loop={true}
       >
         {Categories.map((cate, ind) => (
