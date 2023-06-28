@@ -1,6 +1,6 @@
 import { Carousel } from '@mantine/carousel';
 import { useMediaQuery } from '@mantine/hooks';
-import { Title, useMantineTheme, Container } from '@mantine/core';
+import { Title, useMantineTheme, Container, Divider } from '@mantine/core';
 import CardContainer from './Card';
 
 // import Card from './Card'
@@ -77,6 +77,7 @@ const Markets = () => {
             >
                 {slides}
             </Carousel>
+            <Divider my={15}  mb={-20}/>
         </Container>
     )
 }

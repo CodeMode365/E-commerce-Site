@@ -1,4 +1,4 @@
-import { Card, Image, Group, Text, Button, Badge } from "@mantine/core"
+import { Card, Image, Group, Text, Button, Badge,Rating } from "@mantine/core"
 import { BiCart } from 'react-icons/bi'
 
 const ItemCard = () => {
@@ -25,11 +25,12 @@ const ItemCard = () => {
         />
       </Card.Section>
 
-      <Group position="apart" mt={3} mb={2} align="center" h={40}>
+      <Group position="apart" mt={3} mb={2} align="center" >
         <Text weight={500} my={0} mx={"auto"}>Black Resham T-shirt</Text>
-        <Text fz={12} p={0} color="dimmed" align="center" my={0} mx={"auto"} >
+        <Text fz={12} p={0} color="dimmed" align="center" my={-10} mx={"auto"} >
           Winter Light weight silk
         </Text>
+        <Rating value={3} mx="auto" fz={10} readOnly/>
       </Group>
 
 
