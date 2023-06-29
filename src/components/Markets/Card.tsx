@@ -4,7 +4,7 @@ import React from 'react'
 
 const useStyles = createStyles((theme) => ({
     card: {
-        height: rem(440),
+        height: rem(200),
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',
@@ -28,6 +28,14 @@ const useStyles = createStyles((theme) => ({
         fontWeight: 700,
         textTransform: 'uppercase',
     },
+    btn: {
+        transition:".4s",
+        "&:hover": {
+            cursor: "pointer",
+            background: theme.colors.blue[7],
+            color:"#fff"
+        }
+    }
 }));
 
 
@@ -55,7 +63,7 @@ const CardContainer = ({ image, title, category }: CardProps) => {
                     {title}
                 </Title>
             </div>
-            <Button variant="white" color="dark">
+            <Button variant="white" color="dark" className={classes.btn}>
                 Read article
             </Button>
         </Paper>

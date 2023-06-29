@@ -3,11 +3,11 @@ import { Carousel } from '@mantine/carousel'
 import React from 'react'
 import ItemCard from './Card'
 
-const ItemShowCase = () => {
+const ItemShowCase = ({ title }: { title: string }) => {
     return (
         <Container size="md">
-            <Box my={10}>
-                <Title align='center' >New Arrivals</Title>
+            <Box my={30}>
+                <Title align='center' >{title}</Title>
                 <Text align="center">Explore the New Items on Store</Text>
             </Box>
             <Carousel slideSize="25%"
@@ -22,8 +22,8 @@ const ItemShowCase = () => {
                         <ItemCard key={element} />
                     </Carousel.Slide>
                 ))}
-                {/* </SimpleGrid> */}
             </Carousel>
+            <Divider my={20} mx={30}/>
         </Container>
     )
 }

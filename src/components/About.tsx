@@ -63,7 +63,7 @@ const About = () => {
                     </Accordion>
                 </Flex >
             </Flex>
-            {/* <Divider my={15} /> */}
+            <Divider my={15} mx={30}/>
 
         </Container >
     )

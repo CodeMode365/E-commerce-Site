@@ -1,6 +1,6 @@
 import React from 'react';
 import CircularCard from './CircularCard';
-import { Container, Title, } from '@mantine/core';
+import { Container, Title, Divider} from '@mantine/core';
 import { Carousel } from '@mantine/carousel';
 import { useMediaQuery } from '@mantine/hooks';
 
@@ -30,7 +30,7 @@ const Index: React.FC = () => {
         slidesToScroll={1}
         slideSize={smallScreen ? "25%" : "40%"}
         withControls={false}
-        my={20}
+        py={20}
         loop={true}
       >
         {Categories.map((cate, ind) => (
@@ -39,6 +39,7 @@ const Index: React.FC = () => {
           </Carousel.Slide>
         ))}
       </Carousel>
+      <Divider my={20} mx={30}/>
     </Container>
   );
 };

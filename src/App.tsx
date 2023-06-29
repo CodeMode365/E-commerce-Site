@@ -8,20 +8,37 @@ import Category from "./components/Category"
 import { FooterLinks } from './components/Footer'
 import FooterData from './FooterData'
 import React from "react"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import Cart from './components/Pages/Cart'
+
+const HomePage = () => {
+  return (
+    <>
+      <Hero />
+      <About />
+      <Category />
+      <ItemShowCase title={"New Arrivals"} />
+      <ItemShowCase title={"Popular Items"} />
+      <Markets />
+    </>
+  )
+}
 
 const App = () => {
   return (
-    <React.Suspense fallback={<Loader variant='dots' />}>
-      <MantineProvider withGlobalStyles theme={{ fontFamily: "Roboto, sans-serif", }}>
-        <Navigation />
-        <Hero />
-        <About />
-        <Category />
-        <Markets />
-        <ItemShowCase />
-        <FooterLinks data={FooterData.data} />
-      </MantineProvider>
-    </React.Suspense>
+    <Router>
+
+      <React.Suspense fallback={<Loader variant='dots' />}>
+        <MantineProvider withGlobalStyles theme={{ fontFamily: "Roboto, sans-serif", }}>
+          <Navigation />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/cart" element={<Cart />} />
+          </Routes>
+          <FooterLinks data={FooterData.data} />
+        </MantineProvider>
+      </React.Suspense>
+    </Router>
   )
 }
 

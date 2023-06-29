@@ -12,8 +12,11 @@ import { BiSolidTShirt } from "react-icons/bi"
 import { TbJacket } from "react-icons/tb"
 import { GiArmoredPants, GiMonclerJacket, GiBallerinaShoes } from "react-icons/gi"
 import { TfiShine } from "react-icons/tfi"
+import { NavLink as NLink } from 'react-router-dom'
 
 const useStyles = createStyles((theme) => ({
+    wrapper: {
+    },
     link: {
         display: "flex",
         alignItems: "center",
@@ -142,29 +145,29 @@ const Navigation = () => {
     ))
 
     return (
-        <Box>
-            <Header height={60} px="md">
+        <Box >
+            <Header height={60} px="md" classNames={classes.wrapper}>
                 <Group position='apart' sx={{ height: "100%" }}>
                     <DiHeroku size={30} />
                     <Group sx={{ height: "100%" }} spacing={0} className={classes.hiddenMobile}>
-                        <a href='#' className={classes.link}>
+                        <NLink to='/' className={classes.link}>
                             Home
-                        </a>
+                        </NLink>
                         <HoverCard width={600} position='bottom' radius={'md'} shadow='md' withinPortal>
                             <HoverCard.Target>
-                                <a href='#' className={classes.link}>
+                                <NLink to='#' className={classes.link}>
                                     <Center inline>
                                         <Box component='span' mr={5}>
                                             Categories
                                         </Box>
                                         <BsArrowDownShort size={16} color={theme.fn.primaryColor()} />
                                     </Center>
-                                </a>
+                                </NLink>
                             </HoverCard.Target>
                             <HoverCard.Dropdown sx={{ overflow: 'hidden' }}>
                                 <Group position="apart" px="md">
                                     <Text fw={500}>Categories</Text>
-                                    <Anchor href="#" fz="xs">
+                                    <Anchor target="#" fz="xs">
                                         View all
                                     </Anchor>
                                 </Group>
@@ -194,12 +197,12 @@ const Navigation = () => {
                                 </div>
                             </HoverCard.Dropdown>
                         </HoverCard>
-                        <a href="#" className={classes.link}>
+                        <NLink to="#" className={classes.link}>
                             Products
-                        </a>
-                        <a href="#" className={classes.link}>
+                        </NLink>
+                        <NLink to="/cart" className={classes.link}>
                             Cart
-                        </a>
+                        </NLink>
                     </Group>
 
                     <Group className={classes.hiddenMobile} fw={500}>
@@ -223,9 +226,9 @@ const Navigation = () => {
                 <ScrollArea h={`calc(100vh - ${rem(60)})`} mx="-md">
                     <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'} />
 
-                    <a href="#" className={classes.link}>
+                    <NLink to="/" className={classes.link}>
                         Home
-                    </a>
+                    </NLink>
                     <UnstyledButton className={classes.link} onClick={toggleLinks}>
                         <Center inline>
                             <Box component="span" mr={5}>
@@ -235,12 +238,12 @@ const Navigation = () => {
                         </Center>
                     </UnstyledButton>
                     <Collapse in={linksOpened}>{links}</Collapse>
-                    <a href="#" className={classes.link}>
+                    <NLink to="#" className={classes.link}>
                         Products
-                    </a>
-                    <a href="#" className={classes.link}>
+                    </NLink>
+                    <NLink to="/cart" className={classes.link}>
                         Cart
-                    </a>
+                    </NLink>
 
                     <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'} />
 
