@@ -12,7 +12,7 @@ import { BiSolidTShirt } from "react-icons/bi"
 import { TbJacket } from "react-icons/tb"
 import { GiArmoredPants, GiMonclerJacket, GiBallerinaShoes } from "react-icons/gi"
 import { TfiShine } from "react-icons/tfi"
-import { NavLink as NLink } from 'react-router-dom'
+import { NavLink as NLink, NavLink } from 'react-router-dom'
 
 const useStyles = createStyles((theme) => ({
     wrapper: {
@@ -206,8 +206,12 @@ const Navigation = () => {
                     </Group>
 
                     <Group className={classes.hiddenMobile} fw={500}>
-                        <Button variant="default">Log in</Button>
-                        <Button>Sign up</Button>
+                        <NavLink to="/auth">
+                            <Button variant="default">Log in</Button>
+                        </NavLink>
+                        <NavLink to="/auth">
+                            <Button>Sign up</Button>
+                        </NavLink>
                     </Group>
 
                     <Burger opened={drawerOpened} onClick={toggleDrawer} className={classes.hiddenDesktop} />
@@ -248,8 +252,16 @@ const Navigation = () => {
                     <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'} />
 
                     <Group position="center" grow pb="xl" px="md" fw={500}>
-                        <Button variant="default">Log in</Button>
-                        <Button>Sign up</Button>
+                        <Button variant="default">
+                            <NavLink to="/auth" style={{width:"100%",height:"100%"}}>
+                                Log in
+                            </NavLink>
+                        </Button>
+                        <Button>
+                            <NavLink to="/auth" style={{width:"100%",height:"100%"}}>
+                                Sign up
+                            </NavLink>
+                        </Button>
                     </Group>
                 </ScrollArea>
             </Drawer>

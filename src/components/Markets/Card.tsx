@@ -63,7 +63,7 @@ const CardContainer = ({ image, title, category }: CardProps) => {
                     {title}
                 </Title>
             </div>
-            <Button variant="white" color="dark" className={classes.btn}>
+            <Button variant="light" className={classes.btn}>
                 Read article
             </Button>
         </Paper>
