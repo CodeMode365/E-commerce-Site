@@ -22,7 +22,7 @@ const About = () => {
     const accWidth = smallScreen ? "70%" : "100%"
     const { classes } = useStyles()
     return (
-        <Container my={30}
+        <Container my={30} 
             // sx={{ minWidth: "80%", maxWidth: "56.75rem" }}
             size="md"
         >
@@ -44,26 +44,26 @@ const About = () => {
                     <Accordion defaultValue="customization" >
                         <Accordion.Item value="Mission">
                             <Accordion.Control>Our Mission</Accordion.Control>
-                            <Accordion.Panel>At Our Store, our mission is to revolutionize the way you shop by bringing together a curated selection of products that cater to your diverse needs. We strive to offer a comprehensive range of products that are not only trendy and stylish but also meet the highest standards of quality and functionality.</Accordion.Panel>
+                            <Accordion.Panel>At Our Store, our mission is to revolutionize the way you shop by bringing together a curated selection of products that cater to your diverse needs.</Accordion.Panel>
                         </Accordion.Item>
 
                         <Accordion.Item value="Selection">
                             <Accordion.Control>Extensive Product Selection</Accordion.Control>
-                            <Accordion.Panel>We take pride in our vast collection of products that span across various categories. Whether you're looking for the latest fashion trends, home decor essentials, cutting-edge electronics, or innovative gadgets, we've got you covered. Our team works tirelessly to source products from trusted brands and manufacturers, ensuring that you have access to the best and most reliable options available.</Accordion.Panel>
+                            <Accordion.Panel>We take pride in our vast collection of products that span across various categories. Whether you're looking for the latest fashion trends, we've got you covered. </Accordion.Panel>
                         </Accordion.Item>
 
                         <Accordion.Item value="Customer">
                             <Accordion.Control>Unparalleled Customer Service</Accordion.Control>
-                            <Accordion.Panel>Your satisfaction is our top priority. We are committed to providing exceptional customer service at every step of your shopping journey. Our knowledgeable and friendly support team is always ready to assist you with any inquiries, concerns, or product recommendations. We believe in building long-lasting relationships with our customers and strive to exceed your expectations with every interaction.</Accordion.Panel>
+                            <Accordion.Panel>Your satisfaction is our priority. We are committed to providing exceptional customer service at your every step. Our knowledgeable and friendly support team is always ready to assist you. </Accordion.Panel>
                         </Accordion.Item>
                         <Accordion.Item value="Experience">
                             <Accordion.Control>Seamless Shopping Experience</Accordion.Control>
-                            <Accordion.Panel>We understand the importance of a smooth and hassle-free shopping experience. That's why we've designed our website with user-friendliness in mind. With intuitive navigation, detailed product descriptions, and secure checkout processes, we aim to make your shopping journey convenient and enjoyable. Explore our extensive catalog, add products to your cart with ease, and have them delivered to your doorstep in no time.</Accordion.Panel>
+                            <Accordion.Panel>We understand the importance of a smooth and hassle-free shopping experience. That's why we've designed our website with user-friendliness in mind.</Accordion.Panel>
                         </Accordion.Item>
                     </Accordion>
                 </Flex >
             </Flex>
-            <Divider my={15} mx={30}/>
+            <Divider my={35} mx={30}/>
 
         </Container >
     )
