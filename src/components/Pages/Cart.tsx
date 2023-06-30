@@ -1,7 +1,7 @@
 import { Container, Stack, Title, Group, Box, Card, Flex, Image, Text, Divider, UnstyledButton, createStyles, Grid } from '@mantine/core'
 import { useMediaQuery } from '@mantine/hooks'
 import React from 'react'
-import { BiMinus, BiPlus } from 'react-icons/bi'
+import { BiMinus, BiPlus, BiTrash } from 'react-icons/bi'
 
 const useStyles = createStyles((theme) => ({
     Quantity: {
@@ -57,7 +57,7 @@ const Cart = () => {
                                         mx={extraSmall ? "auto" : 0}
                                         m={8} src="./assets/clothes.jpg" width={200} />
                                     <Box mx={20} my={8} >
-                                        <Title order={3}>Item1</Title>
+                                        <Title order={3} sx={{display:"flex", alignItems:"center"}}>Item1 <UnstyledButton><BiTrash color="red" size={24} style={{ marginLeft: 20 }} /></UnstyledButton></Title>
                                         <Divider my={2} />
                                         <Text className={""}>Price Per Item:
                                             <Text display={"inline"} color="yellow" ml={"md"}>$455 </Text></Text>
@@ -68,24 +68,7 @@ const Cart = () => {
                                 </Flex>
                             </Card.Section>
                         </Card>
-                        <Card>
-                            <Card.Section>
-                                <Flex direction={extraSmall ? "column" : "row"}>
-                                    <Image
-                                        mx={extraSmall ? "auto" : 0}
-                                        m={8} src="./assets/clothes.jpg" width={200} />
-                                    <Box mx={20} my={8} >
-                                        <Title order={3}>Item1</Title>
-                                        <Divider my={2} />
-                                        <Text className={""}>Price Per Item:
-                                            <Text display={"inline"} color="yellow" ml={"md"}>$455 </Text></Text>
-                                        <Text className={classes.Quantity}>Quantity:
-                                            <UnstyledButton className={`${classes.OprBtn} ${classes.IncBtn}`} ><BiPlus /></UnstyledButton> 5 <UnstyledButton className={`${classes.OprBtn} ${classes.DcrBtn}`}><BiMinus /></UnstyledButton></Text>
-                                        <Title order={3} my={5}>Total: <Text display={"inline"} color='gold'>$4545</Text></Title>
-                                    </Box>
-                                </Flex>
-                            </Card.Section>
-                        </Card>
+
                     </Stack>
                 </Grid.Col>
                 <Grid.Col span={smallScreen ? 6 : 2}>
