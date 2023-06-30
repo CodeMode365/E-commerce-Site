@@ -32,7 +32,7 @@ export default function Auth(props: PaperProps) {
     });
 
     return (
-        <Container size="sm" my={35}>
+        <Container size="xs" my={35}>
             <Paper radius="md" p="xl" withBorder {...props}>
                 <Text size="lg" weight={500}>
                     Welcome to Mantine, {type} with
