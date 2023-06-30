@@ -1,6 +1,5 @@
 import React from 'react'
 import {
-    ColorScheme,
     createStyles, Header, HoverCard, Button, Group, UnstyledButton, Text, SimpleGrid,
     ThemeIcon, Anchor, Divider, Center, Box, Burger, Drawer, Collapse, ScrollArea, rem
 } from "@mantine/core"
@@ -17,7 +16,7 @@ import { NavLink as NLink, NavLink } from 'react-router-dom'
 import { AppDispatch, RootState } from '../Redux/store'
 import { useSelector, useDispatch } from 'react-redux'
 import { toggleMode } from '../Redux/Slices/ColorMode'
-
+import { useLocation } from 'react-router-dom'
 const useStyles = createStyles((theme) => ({
     wrapper: {
     },
@@ -25,8 +24,7 @@ const useStyles = createStyles((theme) => ({
         display: "flex",
         alignItems: "center",
         height: "100%",
-        paddingLeft: theme.spacing.md,
-        paddingRIght: theme.spacing.md,
+        paddingInline: theme.spacing.md,
         textDecoration: 'none',
         color: theme.colorScheme === "dark" ? theme.white : theme.black,
         fontWeight: 500,
@@ -73,6 +71,18 @@ const useStyles = createStyles((theme) => ({
     icons: {
         boxShadow: "0 0 2px #aaa",
         padding: "2px"
+    },
+    activeLink: {
+        color: theme.colorScheme == "light" ? theme.colors.blue[7] : theme.colors.blue[2],
+        fontWeight: 700,
+        borderBottom: theme.colorScheme == "light" ? `2px solid ${theme.colors.blue[7]}` : `2px solid ${theme.colors.blue[2]}`,
+        transition: ".4s",
+        "&:hover":{
+            borderBottom: theme.colorScheme == "light" ? `1px solid ${theme.colors.blue[7]}` : `1px solid ${theme.colors.blue[2]}`,
+        fontWeight: 500,
+
+      
+        }
     }
 }))
 
@@ -137,6 +147,12 @@ const Navigation: React.FC = () => {
 
     const colorMode = useSelector((state: RootState) => state.colorMode)
     const dispatch = useDispatch<AppDispatch>()
+    const page = useLocation()
+
+    const isActiveLink = (path: string): boolean => {
+        if (path === page.pathname) return true
+        return false
+    }
 
     const links = mockdata.map((item, ind) => (
         <UnstyledButton className={classes.subLink} key={item.title}>
@@ -162,7 +178,7 @@ const Navigation: React.FC = () => {
                 <Group position='apart' sx={{ height: "100%" }}>
                     <DiHeroku size={30} />
                     <Group sx={{ height: "100%" }} spacing={0} className={classes.hiddenMobile}>
-                        <NLink to='/' className={classes.link}>
+                        <NLink to='/' className={`${classes.link} ${isActiveLink('/') ? classes.activeLink : ''}`} >
                             Home
                         </NLink>
                         <HoverCard width={600} position='bottom' radius={'md'} shadow='md' withinPortal>
@@ -209,11 +225,12 @@ const Navigation: React.FC = () => {
                                 </div>
                             </HoverCard.Dropdown>
                         </HoverCard>
-                        <NLink to="/products" className={classes.link}>
+                        <NLink to="/products" className={`${classes.link} ${isActiveLink('/products') ? classes.activeLink : ''}`}>
                             Products
                         </NLink>
-                        <NLink to="/cart" className={classes.link}>
+                        <NLink to="/cart"className={`${classes.link} ${isActiveLink('/cart') ? classes.activeLink : ''}`} style={{ position: "relative" }}>
                             Cart
+                            <Text color='red' sx={{ position: "absolute", top: 10, right: -5, }} >20</Text>
                         </NLink>
                         <UnstyledButton onClick={() => dispatch(toggleMode())} className={classes.link}>
                             {colorMode === "light" ?
@@ -262,10 +279,10 @@ const Navigation: React.FC = () => {
                 <ScrollArea h={`calc(100vh - ${rem(60)})`} mx="-md">
                     <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'} />
 
-                    <NLink to="/" className={classes.link}>
+                    <NLink to="/" className={`${classes.link} ${isActiveLink('/') ? classes.activeLink : ''}`}>
                         Home
                     </NLink>
-                    <UnstyledButton className={classes.link} onClick={toggleLinks}>
+                    <UnstyledButton className={`${classes.link} ${isActiveLink('/categories') ? classes.activeLink : ''}`} onClick={toggleLinks}>
                         <Center inline>
                             <Box component="span" mr={5}>
                                 Categories
@@ -274,18 +291,18 @@ const Navigation: React.FC = () => {
                         </Center>
                     </UnstyledButton>
                     <Collapse in={linksOpened}>{links}</Collapse>
-                    <NLink to="/products" className={classes.link}>
+                    <NLink to="/products" className={`${classes.link} ${isActiveLink('/products') ? classes.activeLink : ''}`}>
                         Products
                     </NLink>
-                    <NLink to="/cart" className={classes.link}>
-                        Cart
+                    <NLink to="/cart" className={`${classes.link} ${isActiveLink('/cart') ? classes.activeLink : ''}`}>
+                        Cart <Center ml={5} bg={"red"} sx={{ borderRadius: 20, color: "white" }} w={25} h={25}>20</Center>
                     </NLink>
 
                     <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'} />
 
                     <Group position="center" grow pb="xl" px="md" fw={500}>
                         <Button variant="default">
-                            <NavLink to="/auth" style={{ width: "100%", height: "100%" }}>
+                            <NavLink to="/auth"  style={{ width: "100%", height: "100%" }}>
                                 Log in
                             </NavLink>
                         </Button>
