@@ -1,5 +1,6 @@
 import React from 'react'
 import {
+    ColorScheme,
     createStyles, Header, HoverCard, Button, Group, UnstyledButton, Text, SimpleGrid,
     ThemeIcon, Anchor, Divider, Center, Box, Burger, Drawer, Collapse, ScrollArea, rem
 } from "@mantine/core"
@@ -8,11 +9,14 @@ import { useDisclosure } from '@mantine/hooks'
 import { DiHeroku } from "react-icons/di"
 import { AiTwotoneStar } from "react-icons/ai"
 import { RiShirtLine } from "react-icons/ri"
-import { BiSolidTShirt } from "react-icons/bi"
+import { BiMoon, BiSolidTShirt, BiSun } from "react-icons/bi"
 import { TbJacket } from "react-icons/tb"
 import { GiArmoredPants, GiMonclerJacket, GiBallerinaShoes } from "react-icons/gi"
 import { TfiShine } from "react-icons/tfi"
 import { NavLink as NLink, NavLink } from 'react-router-dom'
+import { AppDispatch, RootState } from '../Redux/store'
+import { useSelector, useDispatch } from 'react-redux'
+import { toggleMode } from '../Redux/Slices/ColorMode'
 
 const useStyles = createStyles((theme) => ({
     wrapper: {
@@ -66,6 +70,10 @@ const useStyles = createStyles((theme) => ({
             display: 'none',
         },
     },
+    icons: {
+        boxShadow: "0 0 2px #aaa",
+        padding: "2px"
+    }
 }))
 
 
@@ -121,10 +129,14 @@ const mockdata = [{
 },
 ];
 
-const Navigation = () => {
+
+const Navigation: React.FC = () => {
     const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] = useDisclosure(false)
     const [linksOpened, { toggle: toggleLinks }] = useDisclosure(false)
     const { classes, theme } = useStyles()
+
+    const colorMode = useSelector((state: RootState) => state.colorMode)
+    const dispatch = useDispatch<AppDispatch>()
 
     const links = mockdata.map((item, ind) => (
         <UnstyledButton className={classes.subLink} key={item.title}>
@@ -197,12 +209,22 @@ const Navigation = () => {
                                 </div>
                             </HoverCard.Dropdown>
                         </HoverCard>
-                        <NLink to="#" className={classes.link}>
+                        <NLink to="/products" className={classes.link}>
                             Products
                         </NLink>
                         <NLink to="/cart" className={classes.link}>
                             Cart
                         </NLink>
+                        <UnstyledButton onClick={() => dispatch(toggleMode())} className={classes.link}>
+                            {colorMode === "light" ?
+
+                                (<BiMoon className={classes.icons} size={26} />) :
+                                (
+
+                                    <BiSun className={classes.icons} size={26} />
+                                )
+                            }
+                        </UnstyledButton>
                     </Group>
 
                     <Group className={classes.hiddenMobile} fw={500}>
@@ -227,6 +249,16 @@ const Navigation = () => {
                 className={classes.hiddenDesktop}
                 zIndex={1000000}
             >
+                <UnstyledButton mr={-20} pr={-20} onClick={() => dispatch(toggleMode())} className={classes.link}>
+                    {colorMode === "light" ?
+
+                        (<BiMoon className={classes.icons} size={26} />) :
+                        (
+
+                            <BiSun className={classes.icons} size={26} />
+                        )
+                    }
+                </UnstyledButton>
                 <ScrollArea h={`calc(100vh - ${rem(60)})`} mx="-md">
                     <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'} />
 
@@ -242,7 +274,7 @@ const Navigation = () => {
                         </Center>
                     </UnstyledButton>
                     <Collapse in={linksOpened}>{links}</Collapse>
-                    <NLink to="#" className={classes.link}>
+                    <NLink to="/products" className={classes.link}>
                         Products
                     </NLink>
                     <NLink to="/cart" className={classes.link}>
@@ -253,16 +285,17 @@ const Navigation = () => {
 
                     <Group position="center" grow pb="xl" px="md" fw={500}>
                         <Button variant="default">
-                            <NavLink to="/auth" style={{width:"100%",height:"100%"}}>
+                            <NavLink to="/auth" style={{ width: "100%", height: "100%" }}>
                                 Log in
                             </NavLink>
                         </Button>
                         <Button>
-                            <NavLink to="/auth" style={{width:"100%",height:"100%"}}>
+                            <NavLink to="/auth" style={{ width: "100%", height: "100%" }}>
                                 Sign up
                             </NavLink>
                         </Button>
                     </Group>
+
                 </ScrollArea>
             </Drawer>
         </Box>
