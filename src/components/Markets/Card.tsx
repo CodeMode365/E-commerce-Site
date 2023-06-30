@@ -29,11 +29,12 @@ const useStyles = createStyles((theme) => ({
         textTransform: 'uppercase',
     },
     btn: {
-        transition:".4s",
+        transition: ".4s",
         "&:hover": {
             cursor: "pointer",
-            background: theme.colors.blue[7],
-            color:"#fff"
+            // background: theme.colors.blue[7],
+            // color: "#fff"
+            backdropFilter: 'brightness(.2)',
         }
     }
 }));
@@ -52,7 +53,7 @@ const CardContainer = ({ image, title, category }: CardProps) => {
             shadow="md"
             p="xl"
             radius="md"
-            sx={{ backgroundImage: `url(${image})` }}
+            sx={{ backgroundImage: `linear-gradient(45deg, rgba(0,0,0,.7) 0%, rgba(255,255,255,.3) 90%), url(${image})` }}
             className={classes.card}
         >
             <div>
@@ -63,7 +64,7 @@ const CardContainer = ({ image, title, category }: CardProps) => {
                     {title}
                 </Title>
             </div>
-            <Button variant="light" className={classes.btn}>
+            <Button variant="gradient" gradient={{ from: 'indigo', to: 'cyan' }} className={classes.btn}>
                 Read article
             </Button>
         </Paper>
