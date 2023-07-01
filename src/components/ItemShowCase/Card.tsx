@@ -2,7 +2,9 @@ import { Card, Image, Group, Text, Button, Badge, Rating, createStyles, AspectRa
 import { LazyLoadImage } from "react-lazy-load-image-component"
 import { BiCart } from 'react-icons/bi'
 import { iItems } from "../../assets/Items"
-
+import { AppDispatch } from "../../Redux/store"
+import { useDispatch } from "react-redux"
+import { addToCart } from "../../Redux/Slices/Cart"
 
 const useStyles = createStyles((theme) => ({
   lazyImage: {
@@ -28,10 +30,12 @@ const useStyles = createStyles((theme) => ({
 
 const ItemCard = ({ Item }: { Item: iItems }) => {
 
+  const dispatch = useDispatch<AppDispatch>()
 
   const { classes } = useStyles()
-  function addToCart(event: MouseEvent) {
-    event?.stopPropagation()
+  function addItemTocart() {
+    // event?.stopPropagation()
+    dispatch(addToCart(Item))
   }
   return (
     <Card shadow="sm" padding="lg" radius="md" withBorder className={classes.wrapper}>
@@ -64,10 +68,12 @@ const ItemCard = ({ Item }: { Item: iItems }) => {
       </Group>
 
 
-      <Button className={classes.cartBtn} variant="light" sx={{ display: "flex", alignItems: "center", justifyContent: "center" }} color="blue" fullWidth mt="md" radius="md">
+      <Button className={classes.cartBtn} variant="light" sx={{ display: "flex", alignItems: "center", justifyContent: "center" }} color="blue" fullWidth mt="md" radius="md"
+        onClick={() => addItemTocart()}
+      >
         <BiCart style={{ marginRight: "10px" }} /> Add To Cart
       </Button>
-    </Card>
+    </Card >
 
 
   )

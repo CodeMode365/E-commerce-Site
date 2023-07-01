@@ -2,6 +2,8 @@ import { Container, Stack, Title, Group, Box, Card, Flex, Image, Text, Divider, 
 import { useMediaQuery } from '@mantine/hooks'
 import React from 'react'
 import { BiMinus, BiPlus, BiTrash } from 'react-icons/bi'
+import { useSelector } from 'react-redux'
+import { RootState } from '../../Redux/store'
 
 const useStyles = createStyles((theme) => ({
     Quantity: {
@@ -11,15 +13,15 @@ const useStyles = createStyles((theme) => ({
 
     OprBtn: {
         borderRadius: theme.radius.lg,
-        border: "1px solid black",
         margin: 0,
         // padding: 0,
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
         marginInline: theme.spacing.md,
-        padding: "4px",
-        color: theme.colors.lime[1]
+        padding: "3px",
+        color: theme.colors.lime[1],
+        border: "none"
     },
     IncBtn: {
         background: theme.colors.green[5]
@@ -44,35 +46,38 @@ const Cart = () => {
     const { classes } = useStyles()
     const smallScreen = useMediaQuery('(max-width: 56.25em)');
     const extraSmall = useMediaQuery('(max-width: 30em)');
+    const cartItems = useSelector((state: RootState) => state.cartItems)
     return (
         <Container size={"md"} py={20} >
             <Title>Your Cart Items</Title>
             <Grid columns={6} >
                 <Grid.Col span={smallScreen ? 6 : 4}>
                     <Stack className={classes.ItemHolder}>
-                        <Card>
-                            <Card.Section>
-                                <Flex direction={extraSmall ? "column" : "row"}>
-                                    <Image
-                                        mx={extraSmall ? "auto" : 0}
-                                        m={8} src="./assets/clothes.jpg" width={200} />
-                                    <Box mx={20} my={8} >
-                                        <Title order={3} sx={{display:"flex", alignItems:"center"}}>Item1 <UnstyledButton><BiTrash color="red" size={24} style={{ marginLeft: 20 }} /></UnstyledButton></Title>
-                                        <Divider my={2} />
-                                        <Text className={""}>Price Per Item:
-                                            <Text display={"inline"} color="yellow" ml={"md"}>$455 </Text></Text>
-                                        <Text className={classes.Quantity}>Quantity:
-                                            <UnstyledButton className={`${classes.OprBtn} ${classes.IncBtn}`} ><BiPlus /></UnstyledButton> 5 <UnstyledButton className={`${classes.OprBtn} ${classes.DcrBtn}`}><BiMinus /></UnstyledButton></Text>
-                                        <Title order={3} my={5}>Total: <Text display={"inline"} color='gold'>$4545</Text></Title>
-                                    </Box>
-                                </Flex>
-                            </Card.Section>
-                        </Card>
+                        {cartItems.map((item) => {
+                            return (<Card key={item.id}>
+                                <Card.Section>
+                                    <Flex direction={extraSmall ? "column" : "row"} >
+                                        <Image
+                                            mx={extraSmall ? "auto" : 0}
+                                            m={8} src={item.src} width={200} h={100} />
+                                        <Box mx={20} my={8} >
+                                            <Title order={3} sx={{ display: "flex", alignItems: "center" }}>{item.title} <UnstyledButton><BiTrash color="red" size={24} style={{ marginLeft: 20 }} /></UnstyledButton></Title>
+                                            <Divider my={2} />
+                                            <Text className={""}>Price Per Item:
+                                                <Text display={"inline"} color="yellow" ml={"md"}>${item.price} </Text></Text>
+                                            <Text className={classes.Quantity}>Quantity:
+                                                <UnstyledButton className={`${classes.OprBtn} ${classes.IncBtn}`} ><BiPlus /></UnstyledButton> {item.quantity} <UnstyledButton className={`${classes.OprBtn} ${classes.DcrBtn}`}><BiMinus /></UnstyledButton></Text>
+                                            <Title order={3} my={5}>Total: <Text display={"inline"} color='gold'>$4545</Text></Title>
+                                        </Box>
+                                    </Flex>
+                                </Card.Section>
+                            </Card>)
+                        })}
 
                     </Stack>
                 </Grid.Col>
-                <Grid.Col span={smallScreen ? 6 : 2}>
-                    <Box className={classes.ItemHolder}>
+                <Grid.Col span={smallScreen ? 6 : 2} >
+                    <Box className={classes.ItemHolder} sx={{ position: "sticky", top: "15px" }}>
                         <Box className={classes.FinalCalc}>
                             <Title order={2}>Total: <Text color='gold' display={"inline"}>$45500</Text></Title>
                             <Divider my={2} />

@@ -77,11 +77,11 @@ const useStyles = createStyles((theme) => ({
         fontWeight: 700,
         borderBottom: theme.colorScheme == "light" ? `2px solid ${theme.colors.blue[7]}` : `2px solid ${theme.colors.blue[2]}`,
         transition: ".4s",
-        "&:hover":{
+        "&:hover": {
             borderBottom: theme.colorScheme == "light" ? `1px solid ${theme.colors.blue[7]}` : `1px solid ${theme.colors.blue[2]}`,
-        fontWeight: 500,
+            fontWeight: 500,
 
-      
+
         }
     }
 }))
@@ -144,6 +144,7 @@ const Navigation: React.FC = () => {
     const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] = useDisclosure(false)
     const [linksOpened, { toggle: toggleLinks }] = useDisclosure(false)
     const { classes, theme } = useStyles()
+    const { cartItems } = useSelector((state: RootState) => state)
 
     const colorMode = useSelector((state: RootState) => state.colorMode)
     const dispatch = useDispatch<AppDispatch>()
@@ -228,9 +229,9 @@ const Navigation: React.FC = () => {
                         <NLink to="/products" className={`${classes.link} ${isActiveLink('/products') ? classes.activeLink : ''}`}>
                             Products
                         </NLink>
-                        <NLink to="/cart"className={`${classes.link} ${isActiveLink('/cart') ? classes.activeLink : ''}`} style={{ position: "relative" }}>
+                        <NLink to="/cart" className={`${classes.link} ${isActiveLink('/cart') ? classes.activeLink : ''}`} style={{ position: "relative" }}>
                             Cart
-                            <Text color='red' sx={{ position: "absolute", top: 10, right: -5, }} >20</Text>
+                            <Text color='red' sx={{ position: "absolute", top: 10, right: -5, }} >{cartItems.length}</Text>
                         </NLink>
                         <UnstyledButton onClick={() => dispatch(toggleMode())} className={classes.link}>
                             {colorMode === "light" ?
@@ -295,14 +296,14 @@ const Navigation: React.FC = () => {
                         Products
                     </NLink>
                     <NLink to="/cart" className={`${classes.link} ${isActiveLink('/cart') ? classes.activeLink : ''}`}>
-                        Cart <Center ml={5} bg={"red"} sx={{ borderRadius: 20, color: "white" }} w={25} h={25}>20</Center>
+                        Cart <Center ml={5} bg={"red"} sx={{ borderRadius: 20, color: "white" }} w={25} h={25}>{cartItems.length}</Center>
                     </NLink>
 
                     <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'} />
 
                     <Group position="center" grow pb="xl" px="md" fw={500}>
                         <Button variant="default">
-                            <NavLink to="/auth"  style={{ width: "100%", height: "100%" }}>
+                            <NavLink to="/auth" style={{ width: "100%", height: "100%" }}>
                                 Log in
                             </NavLink>
                         </Button>
