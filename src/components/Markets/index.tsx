@@ -1,54 +1,61 @@
 import { Carousel } from '@mantine/carousel';
 import { useMediaQuery } from '@mantine/hooks';
-import { Title, useMantineTheme, Container, Divider } from '@mantine/core';
-import CardContainer from './Card';
+import { Title, useMantineTheme, Container, Divider, Loader, Center, createStyles, Card, Paper } from '@mantine/core';
+import React from "react"
 
-// import Card from './Card'
-// import { SimpleGrid } from '@mantine/core'
+const LazyStore = React.lazy(() => import("./Card"))
+
+const useStyles = createStyles((theme) => ({
+    holder: {
+        paddingBlock: 50,
+        backgroundImage: "linear-gradient(45deg, rgba(80,130,200,.7) 0%, rgba(255,255,255,.3) 90%)",
+        borderRadius: theme.radius.md
+    }
+}))
 
 const data = [
     {
-        image: "./src/assets/clothes.jpg",
+        image: "./Stores/store1.jpg",
         title: 'Civil Mall',
         category: 'mall',
     },
     {
-        image: "./src/assets/clothes.jpg",
+        image: "./Stores/store2.jpg",
         title: 'KL Tower',
         category: 'godown',
     },
     {
-        image: "./src/assets/clothes.jpg",
+        image: "./Stores/store3.jpg",
         title: 'Swyambhu Super Store',
         category: 'mall',
     },
     {
-        image: "./src/assets/clothes.jpg",
+        image: "./Stores/store9.jpg",
         title: 'Bhatbhatenti, Chabhil',
         category: 'mall',
     },
     {
-        image: "./src/assets/clothes.jpg",
+        image: "./Stores/store5.jpg",
         title: 'Tokha Super Mart',
         category: 'mall',
     },
     {
-        image: "./src/assets/clothes.jpg",
+        image: "./Stores/store6.jpg",
         title: 'Bhatbhateni, lalitpur',
         category: 'mall',
     },
     {
-        image: "./src/assets/clothes.jpg",
+        image: "./Stores/store7.jpg",
         title: 'Bhatbhateni, Bhaktapur',
         category: 'store',
     },
     {
-        image: "./src/assets/clothes.jpg",
+        image: "./Stores/store8.jpg",
         title: 'Civil Mall',
         category: 'store',
     },
     {
-        image: "./src/assets/clothes.jpg",
+        image: "./Stores/store9.jpg",
         title: 'BG Mall',
         category: 'store',
     },
@@ -58,11 +65,10 @@ const data = [
 const Markets = () => {
     const theme = useMantineTheme();
     const mobile = useMediaQuery(`(max-width: ${theme.breakpoints.sm})`);
-    const slides = data.map((item, ind) => (
-        <Carousel.Slide key={item.title + ind}>
-            <CardContainer {...item} />
-        </Carousel.Slide>
-    ));
+
+    const { classes } = useStyles()
+    // const slides = 
+    // ));
     return (
         <Container mt={40} size="md">
             <Title align='center' my={10}>Our Markets</Title>
@@ -75,7 +81,22 @@ const Markets = () => {
                 slidesToScroll={1}
                 loop={true}
             >
-                {slides}
+                {data.map((item, ind) => (
+                    <Carousel.Slide key={item.title + ind}>
+                        <React.Suspense fallback={
+                            <Paper className={classes.holder}>
+                                <Center>
+                                    <Loader variant='oval' />
+                                </Center>
+                            </Paper>}>
+                            <LazyStore {...item} />
+                        </React.Suspense>
+                        {/* <Paper withBorder shadow='md' className={classes.holder}>
+                            <Center>
+                                <Loader variant='oval' />
+                            </Center>
+                        </Paper> */}
+                    </Carousel.Slide>))}
             </Carousel>
             <Divider mt={35} />
         </Container>

@@ -1,8 +1,9 @@
-import { Container, Card, Title, Image, createStyles, Text, Paper, rem, Button } from '@mantine/core'
+import { Title, Image, createStyles, Text, Paper, rem, Button, } from '@mantine/core'
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import React from 'react'
 
 
-const useStyles = createStyles((theme) => ({
+export const useStyles = createStyles((theme) => ({
     card: {
         height: rem(200),
         display: 'flex',
@@ -11,6 +12,16 @@ const useStyles = createStyles((theme) => ({
         alignItems: 'flex-start',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
+        position: "relative"
+    },
+    lazyImage: {
+        width: "100%",
+        height: "100%",
+        position: "absolute",
+        left: 0,
+        top: 0,
+        borderRadius: theme.radius.md,
+        filter: "brightness(.8)"
     },
 
     title: {
@@ -53,22 +64,24 @@ const CardContainer = ({ image, title, category }: CardProps) => {
             shadow="md"
             p="xl"
             radius="md"
-            sx={{ backgroundImage: `linear-gradient(45deg, rgba(0,0,0,.7) 0%, rgba(255,255,255,.3) 90%), url(${image})` }}
+            sx={{ backgroundImage: `linear-gradient(45deg, rgba(0,0,0,.7) 0%, rgba(255,255,255,.3) 90%)` }}
             className={classes.card}
         >
-            <div>
-                <Text className={classes.category} size="xs">
+            <div style={{ zIndex: 50 }}>
+                <Text color='blue' className={classes.category} size="xs">
                     {category}
                 </Text>
-                <Title order={3} className={classes.title}>
+                <Title order={3} className={classes.title} >
                     {title}
                 </Title>
             </div>
-            <Button variant="gradient" gradient={{ from: 'indigo', to: 'cyan' }} className={classes.btn}>
+            <Button sx={{ zIndex: 50, position: "absolute", bottom: 15 }} variant="gradient" gradient={{ from: 'indigo', to: 'cyan' }} className={classes.btn}>
                 Read article
             </Button>
-        </Paper>
-    )
+            <React.Suspense fallback={<Image src={"./placeholder.png"} className={classes.lazyImage} />}>
+                <LazyLoadImage src={image} alt={title} className={classes.lazyImage} effect='blur' placeholderSrc={"./placeholder.png"} />
+            </React.Suspense>
+        </Paper>)
 }
 
 export default CardContainer

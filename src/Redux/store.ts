@@ -1,4 +1,4 @@
-import { configureStore, combineReducers } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 import ColorModeReducer from "./Slices/ColorMode";
 
 // const rootReducer = combineReducers({})
