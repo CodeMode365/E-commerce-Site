@@ -2,8 +2,10 @@ import { Container, Stack, Title, Group, Box, Card, Flex, Image, Text, Divider, 
 import { useMediaQuery } from '@mantine/hooks'
 import React from 'react'
 import { BiMinus, BiPlus, BiTrash } from 'react-icons/bi'
-import { useSelector } from 'react-redux'
-import { RootState } from '../../Redux/store'
+import { useSelector, useDispatch } from 'react-redux'
+import { AppDispatch, RootState } from '../../Redux/store'
+import { dcrQuantity, incQuantity, removeItem } from '../../Redux/Slices/Cart'
+import { iItems } from '../../assets/Items'
 
 const useStyles = createStyles((theme) => ({
     Quantity: {
@@ -47,6 +49,19 @@ const Cart = () => {
     const smallScreen = useMediaQuery('(max-width: 56.25em)');
     const extraSmall = useMediaQuery('(max-width: 30em)');
     const cartItems = useSelector((state: RootState) => state.cartItems)
+
+    const dispatch = useDispatch<AppDispatch>()
+
+    const removeFromCart = (item: iItems): void => {
+        dispatch(removeItem(item))
+    }
+    const decrementQuantity = (item: iItems): void => {
+        dispatch(dcrQuantity(item))
+    }
+    const incrementQuantity = (item: iItems): void => {
+        dispatch(incQuantity(item))
+    }
+
     return (
         <Container size={"md"} py={20} >
             <Title>Your Cart Items</Title>
@@ -61,13 +76,19 @@ const Cart = () => {
                                             mx={extraSmall ? "auto" : 0}
                                             m={8} src={item.src} width={200} h={100} />
                                         <Box mx={20} my={8} >
-                                            <Title order={3} sx={{ display: "flex", alignItems: "center" }}>{item.title} <UnstyledButton><BiTrash color="red" size={24} style={{ marginLeft: 20 }} /></UnstyledButton></Title>
+                                            <Title order={3} sx={{ display: "flex", alignItems: "center" }}>{item.title} <UnstyledButton onClick={() => removeFromCart(item)}><BiTrash color="red" size={24} style={{ marginLeft: 20 }} /></UnstyledButton></Title>
                                             <Divider my={2} />
                                             <Text className={""}>Price Per Item:
                                                 <Text display={"inline"} color="yellow" ml={"md"}>${item.price} </Text></Text>
                                             <Text className={classes.Quantity}>Quantity:
-                                                <UnstyledButton className={`${classes.OprBtn} ${classes.IncBtn}`} ><BiPlus /></UnstyledButton> {item.quantity} <UnstyledButton className={`${classes.OprBtn} ${classes.DcrBtn}`}><BiMinus /></UnstyledButton></Text>
-                                            <Title order={3} my={5}>Total: <Text display={"inline"} color='gold'>$4545</Text></Title>
+                                                <UnstyledButton onClick={() => incrementQuantity(item)} className={`${classes.OprBtn} ${classes.IncBtn}`} >
+                                                    <BiPlus />
+                                                </UnstyledButton>
+                                                {item.quantity}
+                                                <UnstyledButton onClick={() => decrementQuantity(item)} className={`${classes.OprBtn} ${classes.DcrBtn}`}><BiMinus />
+                                                </UnstyledButton>
+                                            </Text>
+                                            <Title order={3} my={5}>Total: <Text display={"inline"} color='gold'>${item.quantity * item.price}</Text></Title>
                                         </Box>
                                     </Flex>
                                 </Card.Section>
