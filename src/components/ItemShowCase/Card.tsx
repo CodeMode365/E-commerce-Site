@@ -1,10 +1,11 @@
-import { Card, Image, Group, Text, Button, Badge, Rating, createStyles, AspectRatio } from "@mantine/core"
+import { Group, Text, Button, Badge, Rating, createStyles, Card, Image } from "@mantine/core"
 import { LazyLoadImage } from "react-lazy-load-image-component"
 import { BiCart } from 'react-icons/bi'
 import { iItems } from "../../assets/Items"
 import { AppDispatch } from "../../Redux/store"
 import { useDispatch } from "react-redux"
 import { addToCart } from "../../Redux/Slices/Cart"
+import React from 'react'
 
 const useStyles = createStyles((theme) => ({
   lazyImage: {
@@ -31,12 +32,14 @@ const useStyles = createStyles((theme) => ({
 const ItemCard = ({ Item }: { Item: iItems }) => {
 
   const dispatch = useDispatch<AppDispatch>()
+  const [isLoaded, setIsLoaded] = React.useState<boolean>(false)
 
   const { classes } = useStyles()
   function addItemTocart() {
     // event?.stopPropagation()
     dispatch(addToCart(Item))
   }
+
   return (
     <Card shadow="sm" padding="lg" radius="md" withBorder className={classes.wrapper}>
       <Card.Section component="a" href="#" sx={{ cursor: "pointer" }} >
@@ -50,13 +53,27 @@ const ItemCard = ({ Item }: { Item: iItems }) => {
           <Badge variant="gradient" gradient={{ from: 'indigo', to: 'cyan' }}>Sale</Badge>
           <Badge variant="gradient" gradient={{ from: '#ed6ea0', to: '#ec8c69', deg: 35 }}>New</Badge>
         </Group>
+
         <LazyLoadImage
           effect="blur"
           src={Item.src}
           height={160}
           alt="Norway"
           className={classes.lazyImage}
+          onLoadCapture={() => { console.log("Rendered"), setIsLoaded(true) }}
         />
+        {
+          !isLoaded && (
+            <LazyLoadImage
+              effect="blur"
+              // src={Item.src}
+              src={'./placeholder.png'}
+              height={160}
+              alt="Norway"
+              className={classes.lazyImage}
+            />
+          )
+        }
       </Card.Section>
 
       <Group position="apart" mt={3} mb={2} align="center" >
@@ -76,7 +93,9 @@ const ItemCard = ({ Item }: { Item: iItems }) => {
     </Card >
 
 
+
   )
+
 }
 
 export default ItemCard

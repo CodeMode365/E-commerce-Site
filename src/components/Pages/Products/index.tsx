@@ -1,5 +1,5 @@
 import { useState, lazy, Suspense } from 'react'
-import { Container, SimpleGrid, Box, Divider, Title, Stack, Text, Group, Center, createStyles, MultiSelect, NativeSelect, Loader } from '@mantine/core'
+import { Container, SimpleGrid, Box, Skeleton, Divider, Card, Title, Stack, Text, Group, Flex, createStyles, MultiSelect, NativeSelect, Loader } from '@mantine/core'
 import Data, { iItems, iCategory } from '../../../assets/Items'
 const LazyCard = lazy(() => import("../../ItemShowCase/Card"))
 
@@ -61,13 +61,20 @@ const index = () => {
 
                                 {[...item.Items].map((SingleItem: iItems) => (
                                     <Suspense key={SingleItem.id} fallback={
-                                        <Box>
-                                            <Center><Loader variant='oval' />
-                                            </Center>
-                                        </Box>
+
+                                        <Card py={"auto"} px={"auto"} mih={150} withBorder shadow={"md"}>
+                                            <Flex mx="auto" direction={"column"} align={"center"}>
+                                                <Skeleton height={60} radius="sm" />
+                                                <Skeleton height={8} radius="xl" />
+                                                <Skeleton height={8} mt={6} radius="xl" />
+                                                <Skeleton height={8} mt={6} width="70%" radius="xl" />
+                                                <Skeleton height={8} mt={6} width="50%" radius="xl" />
+                                            </Flex>
+                                        </Card>
                                     }>
                                         <LazyCard Item={SingleItem} />
                                     </Suspense>
+
                                 ))}
                             </SimpleGrid >
                         </Box>

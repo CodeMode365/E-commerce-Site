@@ -11,8 +11,8 @@ const Home = () => {
             <Hero />
             <About />
             <Category />
-            <ItemShowCase title={"New Arrivals"} />
-            <ItemShowCase title={"Popular Items"} />
+            {/* <ItemShowCase title={"New Arrivals"} />
+            <ItemShowCase title={"Popular Items"} /> */}
             <Markets />
         </>
     )
