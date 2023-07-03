@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { AppDispatch, RootState } from '../../Redux/store'
 import { dcrQuantity, incQuantity, removeItem } from '../../Redux/Slices/Cart'
 import { iItems } from '../../assets/Items'
+import Swal from "sweetalert2"
 
 const useStyles = createStyles((theme) => ({
     Quantity: {
@@ -49,11 +50,29 @@ const Cart = () => {
     const smallScreen = useMediaQuery('(max-width: 56.25em)');
     const extraSmall = useMediaQuery('(max-width: 30em)');
     const cartItems = useSelector((state: RootState) => state.cartItems)
+    console.log(cartItems)
 
     const dispatch = useDispatch<AppDispatch>()
 
     const removeFromCart = (item: iItems): void => {
-        dispatch(removeItem(item))
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success'
+                )
+                dispatch(removeItem(item))
+            }
+        })
     }
     const decrementQuantity = (item: iItems): void => {
         dispatch(dcrQuantity(item))
@@ -61,6 +80,10 @@ const Cart = () => {
     const incrementQuantity = (item: iItems): void => {
         dispatch(incQuantity(item))
     }
+
+
+
+
 
     return (
         <Container size={"md"} py={20} >
