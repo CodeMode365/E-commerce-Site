@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "build": "tsc && vite build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
@@ -22,7 +22,8 @@
     "react-icons": "^4.10.1",
     "react-lazy-load-image-component": "^1.6.0",
     "react-redux": "^8.1.1",
-    "react-router-dom": "^6.14.0"
+    "react-router-dom": "^6.14.0",
+    "sweetalert2": "^11.7.12"
   },
   "devDependencies": {
     "@types/react": "^18.0.37",

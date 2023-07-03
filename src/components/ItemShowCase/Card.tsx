@@ -6,6 +6,7 @@ import { AppDispatch } from "../../Redux/store"
 import { useDispatch } from "react-redux"
 import { addToCart } from "../../Redux/Slices/Cart"
 import React from 'react'
+import Swal from "sweetalert2"
 
 const useStyles = createStyles((theme) => ({
   lazyImage: {
@@ -37,7 +38,25 @@ const ItemCard = ({ Item }: { Item: iItems }) => {
   const { classes } = useStyles()
   function addItemTocart() {
     // event?.stopPropagation()
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'bottom-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+
+    Toast.fire({
+      icon: 'success',
+      title: `<span style={{color:'red'}}>${Item.title}</span> added to Cart`
+
+    })
     dispatch(addToCart(Item))
+
   }
 
   return (

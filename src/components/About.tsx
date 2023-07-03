@@ -22,12 +22,12 @@ const About = () => {
     const accWidth = smallScreen ? "70%" : "100%"
     const { classes } = useStyles()
     return (
-        <Container my={30} 
+        <Container my={30}
             // sx={{ minWidth: "80%", maxWidth: "56.75rem" }}
             size="md"
         >
             <Title align='center' mb={15}>About <Text display={"inline"} color={theme.colors.blue[7]}>Our Store</Text></Title>
-            <Flex direction={smallScreen ? "row" : "column"} >
+            <Flex direction={smallScreen ? "row" : "column"} sx={{ maxWidth: "100vw" }} >
                 <Image src={"./src/assets/clothes.jpg"} />
                 <Text align='justify' className={classes.content}>
                     &nbsp; Welcome to our Store, your ultimate destination for all your shopping needs! We are an online eCommerce store dedicated to providing you with a seamless and enjoyable shopping experience. Our goal is to offer a wide range of high-quality products, exceptional customer service, and convenient shopping
@@ -63,7 +63,7 @@ const About = () => {
                     </Accordion>
                 </Flex >
             </Flex>
-            <Divider my={35} mx={30}/>
+            <Divider my={35} mx={30} />
 
         </Container >
     )
