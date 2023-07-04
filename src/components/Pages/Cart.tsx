@@ -1,14 +1,15 @@
 import { Container, Stack, Title, Group, Box, Card, Flex, Image, Text, Divider, UnstyledButton, createStyles, Grid } from '@mantine/core'
 import { useMediaQuery } from '@mantine/hooks'
-import React from 'react'
 import { BiMinus, BiPlus, BiTrash } from 'react-icons/bi'
 import { useSelector, useDispatch } from 'react-redux'
 import { AppDispatch, RootState } from '../../Redux/store'
 import { dcrQuantity, incQuantity, removeItem } from '../../Redux/Slices/Cart'
 import { iItems } from '../../assets/Items'
 import Swal from "sweetalert2"
+import React, { useCallback, useMemo, useState, useEffect } from 'react'
 
 const useStyles = createStyles((theme) => ({
+
     Quantity: {
         display: "flex",
         alignItems: "center",
@@ -45,12 +46,11 @@ const useStyles = createStyles((theme) => ({
     }
 }))
 
-const Cart = () => {
+const Cart = React.memo(() => {
     const { classes } = useStyles()
     const smallScreen = useMediaQuery('(max-width: 56.25em)');
     const extraSmall = useMediaQuery('(max-width: 30em)');
     const cartItems = useSelector((state: RootState) => state.cartItems)
-    console.log(cartItems)
 
     const dispatch = useDispatch<AppDispatch>()
 
@@ -81,8 +81,20 @@ const Cart = () => {
         dispatch(incQuantity(item))
     }
 
+    const [totalAmount, setTotalAmount] = useState<number>(0)
 
+    useEffect(() => {
+        function calcTotal() {
+            let finalAmount = 0
+            cartItems.forEach((item) => {
+                finalAmount += (item.quantity * item.price)
+            })
+            setTotalAmount(finalAmount)
 
+        }
+        calcTotal()
+        return calcTotal()
+    }, [cartItems])
 
 
     return (
@@ -95,9 +107,12 @@ const Cart = () => {
                             return (<Card key={item.id}>
                                 <Card.Section>
                                     <Flex direction={extraSmall ? "column" : "row"} >
-                                        <Image
-                                            mx={extraSmall ? "auto" : 0}
-                                            m={8} src={item.src} width={200} h={100} />
+                                        {!extraSmall &&
+                                            <Box>
+                                                <Image
+                                                    mx={extraSmall ? "auto" : 0}
+                                                    m={8} src={item.src} width={200} h={100} sx={{ objectPosition: "center" }} />
+                                            </Box>}
                                         <Box mx={20} my={8} >
                                             <Title order={3} sx={{ display: "flex", alignItems: "center" }}>{item.title} <UnstyledButton onClick={() => removeFromCart(item)}><BiTrash color="red" size={24} style={{ marginLeft: 20 }} /></UnstyledButton></Title>
                                             <Divider my={2} />
@@ -123,7 +138,7 @@ const Cart = () => {
                 <Grid.Col span={smallScreen ? 6 : 2} >
                     <Box className={classes.ItemHolder} sx={{ position: "sticky", top: "15px" }}>
                         <Box className={classes.FinalCalc}>
-                            <Title order={2}>Total: <Text color='gold' display={"inline"}>$45500</Text></Title>
+                            <Title order={2}>Total: <Text color='gold' display={"inline"}>${totalAmount}</Text></Title>
                             <Divider my={2} />
                             <Title order={4}>Discount: <Text color="green" display="inline">14%</Text></Title>
                             <Title order={4}>VAT: <Text color="red" display="inline">14%</Text></Title>
@@ -134,6 +149,6 @@ const Cart = () => {
             </Grid>
         </Container>
     )
-}
+})
 
 export default Cart

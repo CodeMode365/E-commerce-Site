@@ -8,6 +8,20 @@ interface cartItem extends iItems {
 
 const initialData: cartItem[] = JSON.parse(localStorage.getItem("cartItems") as string) as cartItem[] || [];
 
+
+function changeQuantity(filteringeItem: cartItem, state: cartItem[], operation: string): cartItem[] {
+    const filteredCart = state.filter((item: cartItem) => item.id !== filteringeItem.id)
+    const indexofItem = state.findIndex((item: cartItem) => filteringeItem.id === item.id)
+    if (operation === "dcr") {
+        filteredCart.splice(indexofItem, 0, { ...filteringeItem, quantity: filteringeItem.quantity - 1 })
+    } else if (operation === "inc") {
+        filteredCart.splice(indexofItem, 0, { ...filteringeItem, quantity: filteringeItem.quantity + 1 })
+    }
+    localStorage.setItem("cartItems", JSON.stringify(filteredCart))
+    return [...filteredCart]
+}
+
+
 const CartSlice = createSlice({
     name: "Cart Items",
     initialState: initialData,
@@ -33,30 +47,22 @@ const CartSlice = createSlice({
         },
         incQuantity: (state, operatingItem: PayloadAction<iItems>) => {
             const foundItem = state.find((item: cartItem) => operatingItem.payload.id === item.id)
-            const indexofItem = state.findIndex((item: cartItem) => operatingItem.payload.id === item.id)
-
-            if (foundItem) {
-                const filteredCart = state.filter((item: cartItem) => item.id !== operatingItem.payload.id)
-                const newState = [...filteredCart]
-                newState.splice(indexofItem, 0, { ...foundItem, quantity: foundItem.quantity + 1 })
-                localStorage.setItem("cartItems", JSON.stringify(newState))
-                return newState
-            } return state
-
-        },
-        dcrQuantity: (state, operatingItem: PayloadAction<iItems>) => {
-            const foundItem = state.find((item: cartItem) => operatingItem.payload.id === item.id)
-            const indexofItem = state.findIndex((item: cartItem) => operatingItem.payload.id === item.id)
-            if (foundItem) {
-                const filteredCart = state.filter((item: cartItem) => item.id !== operatingItem.payload.id)
-                const newState = [...filteredCart]
-                newState.splice(indexofItem, 0, { ...foundItem, quantity: foundItem.quantity - 1 })
-                localStorage.setItem("cartItems", JSON.stringify(newState))
-                return newState
+            if (foundItem!.quantity < 15) {
+                if (foundItem) {
+                    return changeQuantity(foundItem, state, "inc")
+                }
             }
             return state
         },
-
+        dcrQuantity: (state, operatingItem: PayloadAction<iItems>) => {
+            const foundItem = state.find((item: cartItem) => operatingItem.payload.id === item.id)
+            if (foundItem!.quantity > 1) {
+                if (foundItem) {
+                    return changeQuantity(foundItem, state, "dcr")
+                }
+            }
+            return state
+        },
         removeAllItems: () => {
             return [];
         },

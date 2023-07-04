@@ -21,7 +21,8 @@ export const useStyles = createStyles((theme) => ({
         left: 0,
         top: 0,
         borderRadius: theme.radius.md,
-        filter: "brightness(.8)"
+        filter: "brightness(.8)",
+        objectFit:"cover"
     },
 
     title: {
