@@ -15,7 +15,7 @@ const useStyles = createStyles((theme) => ({
     left: 0,
     top: 0,
     filter: "brightness(.8)",
-    AspectRatio: 1 / 2,
+    objectFit: "cover"
   },
   wrapper: {
     position: "relative",
@@ -79,7 +79,7 @@ const ItemCard = ({ Item }: { Item: iItems }) => {
           height={160}
           alt="Norway"
           className={classes.lazyImage}
-          onLoadCapture={() => { console.log("Rendered"), setIsLoaded(true) }}
+          onLoadCapture={() => setIsLoaded(true)}
         />
         {
           !isLoaded && (
