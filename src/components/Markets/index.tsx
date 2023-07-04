@@ -1,6 +1,5 @@
 import { Carousel } from '@mantine/carousel';
-import { useMediaQuery } from '@mantine/hooks';
-import { Title, useMantineTheme, Container, Divider, Loader, Center, createStyles, Card, Paper } from '@mantine/core';
+import { Title, Container, Divider, Loader, Center, createStyles, Paper } from '@mantine/core';
 import React from "react"
 
 const LazyStore = React.lazy(() => import("./Card"))
@@ -63,9 +62,6 @@ const data = [
 ];
 
 const Markets = () => {
-    const theme = useMantineTheme();
-    const mobile = useMediaQuery(`(max-width: ${theme.breakpoints.sm})`);
-
     const { classes } = useStyles()
     // const slides = 
     // ));
@@ -91,11 +87,6 @@ const Markets = () => {
                             </Paper>}>
                             <LazyStore {...item} />
                         </React.Suspense>
-                        {/* <Paper withBorder shadow='md' className={classes.holder}>
-                            <Center>
-                                <Loader variant='oval' />
-                            </Center>
-                        </Paper> */}
                     </Carousel.Slide>))}
             </Carousel>
             <Divider mt={35} />

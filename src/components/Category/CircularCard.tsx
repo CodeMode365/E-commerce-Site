@@ -1,9 +1,8 @@
 import { Card, Title, createStyles, } from '@mantine/core'
-import React from 'react'
 import { iCategory } from '.'
 import { useHover, useMediaQuery } from '@mantine/hooks'
 
-const useStyles = createStyles((theme) => ({
+const useStyles = createStyles(() => ({
     card: {
         cursor: "pointer",
         background: "linear-gradient(180deg, rgba(30, 0, 0, 0.75) 0%, rgba(34, 139, 230, 0.55) 90%), url('./src/assets/clothes.jpg')",
@@ -13,9 +12,9 @@ const useStyles = createStyles((theme) => ({
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        zIndex:1000,
-        color:"red",
-        transition:".2s",
+        zIndex: 1000,
+        color: "red",
+        transition: ".2s",
         "&:hover": {
             boxShadow: "0 0 15px 1px black"
         }
@@ -23,7 +22,7 @@ const useStyles = createStyles((theme) => ({
 }))
 
 const CircularCard = ({ title }: iCategory) => {
-    const { hovered, ref } = useHover()
+    const { hovered, ref }: { hovered: boolean, ref: any } = useHover()
     const smallScreen = useMediaQuery('(min-width:56.25rem)')
     const { classes } = useStyles()
 

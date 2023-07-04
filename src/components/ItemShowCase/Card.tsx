@@ -1,4 +1,4 @@
-import { Group, Text, Button, Badge, Rating, createStyles, Card, Image } from "@mantine/core"
+import { Group, Text, Button, Badge, Rating, createStyles, Card } from "@mantine/core"
 import { LazyLoadImage } from "react-lazy-load-image-component"
 import { BiCart } from 'react-icons/bi'
 import { iItems } from "../../assets/Items"
@@ -8,7 +8,7 @@ import { addToCart } from "../../Redux/Slices/Cart"
 import React from 'react'
 import Swal from "sweetalert2"
 
-const useStyles = createStyles((theme) => ({
+const useStyles = createStyles(() => ({
   lazyImage: {
     width: "100%",
     position: "absolute",
@@ -19,15 +19,7 @@ const useStyles = createStyles((theme) => ({
   },
   wrapper: {
     position: "relative",
-    // paddingBottom:theme.spacing.xl,
-    // paddingInline:"20px"
   },
-  cartBtn: {
-    // position: "absolute",
-    // bottom: 10,
-    // left: "50%",
-    // transform:"translateX(-50%)",
-  }
 }))
 
 const ItemCard = ({ Item }: { Item: iItems }) => {
@@ -104,7 +96,7 @@ const ItemCard = ({ Item }: { Item: iItems }) => {
       </Group>
 
 
-      <Button className={classes.cartBtn} variant="light" sx={{ display: "flex", alignItems: "center", justifyContent: "center" }} color="blue" fullWidth mt="md" radius="md"
+      <Button variant="light" sx={{ display: "flex", alignItems: "center", justifyContent: "center" }} color="blue" fullWidth mt="md" radius="md"
         onClick={() => addItemTocart()}
       >
         <BiCart style={{ marginRight: "10px" }} /> Add To Cart

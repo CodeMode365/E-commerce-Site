@@ -1,5 +1,5 @@
 import { useState, lazy, Suspense } from 'react'
-import { Container, SimpleGrid, Box, Skeleton, Divider, Card, Title, Stack, Text, Group, Flex, createStyles, MultiSelect, NativeSelect, Loader } from '@mantine/core'
+import { Container, SimpleGrid, Box, Skeleton, Divider, Card, Title, Stack, Text, Group, Flex, createStyles, MultiSelect, NativeSelect } from '@mantine/core'
 import Data, { iItems, iCategory } from '../../../assets/Items'
 const LazyCard = lazy(() => import("../../ItemShowCase/Card"))
 

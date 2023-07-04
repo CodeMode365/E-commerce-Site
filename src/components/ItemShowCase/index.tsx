@@ -1,7 +1,6 @@
-import { Container, SimpleGrid, Title, Divider, Text, Group, Box } from '@mantine/core'
+import { Container, Title, Divider, Text, Box } from '@mantine/core'
 import { Carousel } from '@mantine/carousel'
-import React from 'react'
-import ItemCard from './Card'
+// import ItemCard from './Card'
 
 const ItemShowCase = ({ title }: { title: string }) => {
     return (
@@ -17,13 +16,13 @@ const ItemShowCase = ({ title }: { title: string }) => {
                 slidesToScroll={1}
                 loop={true}
             >
-                {[...Array(8).keys()].map((element, index) => (
+                {/* {[...Array(8).keys()].map((element, index) => (
                     <Carousel.Slide key={index}>
                         <ItemCard key={element} />
                     </Carousel.Slide>
-                ))}
+                ))} */}
             </Carousel>
-            <Divider my={20} mx={30}/>
+            <Divider my={20} mx={30} />
         </Container>
     )
 }

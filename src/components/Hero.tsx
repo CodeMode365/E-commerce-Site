@@ -1,4 +1,4 @@
-import { createStyles, Overlay, Container, Group, Title, Button, Text, rem } from '@mantine/core';
+import { createStyles, Overlay, Container, Title, Button, Text, rem } from '@mantine/core';
 
 const useStyles = createStyles((theme) => ({
   hero: {
@@ -54,11 +54,11 @@ const useStyles = createStyles((theme) => ({
 
   control: {
     marginTop: `calc(${theme.spacing.xl} * 1.5)`,
-    transition:".5s",
+    transition: ".5s",
     "&:hover": {
       background: theme.colors.blue[7],
-      border:`1px solid ${theme.colors.blue[7]}`,
-      color:"white",
+      border: `1px solid ${theme.colors.blue[7]}`,
+      color: "white",
     },
 
     [theme.fn.smallerThan('sm')]: {

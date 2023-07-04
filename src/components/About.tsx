@@ -1,5 +1,4 @@
-import { Container, Flex, Text, Image, Title, Accordion, Divider, createStyles } from '@mantine/core'
-import { useTheme } from '@emotion/react'
+import { Container, Flex, Text, Image, Title, Accordion, Divider, createStyles, useMantineTheme } from '@mantine/core'
 import { useMediaQuery } from '@mantine/hooks'
 
 const useStyles = createStyles((theme) => ({
@@ -17,7 +16,7 @@ const useStyles = createStyles((theme) => ({
 }))
 
 const About = () => {
-    const theme = useTheme()
+    const theme = useMantineTheme()
     const smallScreen = useMediaQuery('(min-width:56.25rem)')
     const accWidth = smallScreen ? "70%" : "100%"
     const { classes } = useStyles()

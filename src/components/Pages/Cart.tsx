@@ -1,4 +1,4 @@
-import { Container, Stack, Title, Group, Box, Card, Flex, Image, Text, Divider, UnstyledButton, createStyles, Grid } from '@mantine/core'
+import { Container, Stack, Title, Box, Card, Flex, Image, Text, Divider, UnstyledButton, createStyles, Grid } from '@mantine/core'
 import { useMediaQuery } from '@mantine/hooks'
 import { BiMinus, BiPlus, BiTrash } from 'react-icons/bi'
 import { useSelector, useDispatch } from 'react-redux'
@@ -6,7 +6,7 @@ import { AppDispatch, RootState } from '../../Redux/store'
 import { dcrQuantity, incQuantity, removeItem } from '../../Redux/Slices/Cart'
 import { iItems } from '../../assets/Items'
 import Swal from "sweetalert2"
-import React, { useCallback, useMemo, useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 
 const useStyles = createStyles((theme) => ({
 

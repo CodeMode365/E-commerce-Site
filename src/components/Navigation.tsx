@@ -155,7 +155,7 @@ const Navigation: React.FC = () => {
         return false
     }
 
-    const links = mockdata.map((item, ind) => (
+    const links = mockdata.map((item) => (
         <UnstyledButton className={classes.subLink} key={item.title}>
             <Group noWrap align="flex-start">
                 <ThemeIcon size={34} variant='default' radius="md">
