@@ -1,41 +1,12 @@
 import { useState, lazy, Suspense } from 'react'
-import { Container, SimpleGrid, Box, Skeleton, Divider, Card, Title, Stack, Text, Group, Flex, createStyles, MultiSelect, NativeSelect } from '@mantine/core'
+import { Container, SimpleGrid, Box, Skeleton, Divider, Card, Title, Stack, Text, Group, Flex, MultiSelect, NativeSelect } from '@mantine/core'
 import Data, { iItems, iCategory } from '../../../assets/Items'
-const LazyCard = lazy(() => import("../../ItemShowCase/Card"))
+import { useStyles } from './Styles'
+import { data } from './Data'
+
+const LazyCard = lazy(() => import("../../Reusable/Card"))
 
 
-
-const useStyles = createStyles((theme) => (
-    {
-        Filter: {
-            display: "flex",
-            flexDirection: "row",
-            gap: theme.spacing.md,
-            border: theme.colorScheme === "light" ? `2px solid ${theme.colors.gray[3]}` : `2px solid ${theme.colors.gray[8]}`,
-            padding: theme.spacing.sm,
-            borderRadius: theme.radius.md,
-            marginBlock: theme.spacing.sm,
-
-        }
-    }
-
-))
-
-interface iData {
-    value: string,
-    label: string
-}
-
-const data: iData[] = [
-    { value: 'New', label: 'New' },
-    { value: 'Trending', label: 'Trending' },
-    { value: 'Male', label: 'Male' },
-    { value: 'Female', label: 'Female' },
-    { value: 'Upper', label: 'Upper' },
-    { value: 'Lower', label: 'Lower' },
-    { value: 'Shoes', label: 'Shoes' },
-    { value: 'Top', label: 'Top Rated' },
-]
 
 const index = () => {
     const { classes } = useStyles()

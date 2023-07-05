@@ -2,49 +2,12 @@ import { Container, Stack, Title, Box, Card, Flex, Image, Text, Divider, Unstyle
 import { useMediaQuery } from '@mantine/hooks'
 import { BiMinus, BiPlus, BiTrash } from 'react-icons/bi'
 import { useSelector, useDispatch } from 'react-redux'
-import { AppDispatch, RootState } from '../../Redux/store'
-import { dcrQuantity, incQuantity, removeItem } from '../../Redux/Slices/Cart'
-import { iItems } from '../../assets/Items'
+import { AppDispatch, RootState } from '../../../Redux/store'
+import { dcrQuantity, incQuantity, removeItem } from '../../../Redux/Slices/Cart'
+import { iItems } from '../../../assets/Items'
 import Swal from "sweetalert2"
 import React, { useState, useEffect } from 'react'
-
-const useStyles = createStyles((theme) => ({
-
-    Quantity: {
-        display: "flex",
-        alignItems: "center",
-    },
-
-    OprBtn: {
-        borderRadius: theme.radius.lg,
-        margin: 0,
-        // padding: 0,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        marginInline: theme.spacing.md,
-        padding: "3px",
-        color: theme.colors.lime[1],
-        border: "none"
-    },
-    IncBtn: {
-        background: theme.colors.green[5]
-    },
-    DcrBtn: {
-        background: theme.colors.cyan[5]
-    },
-    ItemHolder: {
-        background: theme.colorScheme == "dark" ? theme.colors.gray[8] : theme.colors.gray[3],
-        borderRadius: theme.radius.sm,
-        padding: theme.spacing.xs
-    },
-    FinalCalc: {
-        background: theme.colorScheme == "dark" ? theme.colors.gray[9] : theme.colors.gray[1],
-        borderRadius: theme.radius.sm,
-        padding: theme.spacing.xs
-
-    }
-}))
+import { useStyles } from './Styles'
 
 const Cart = React.memo(() => {
     const { classes } = useStyles()

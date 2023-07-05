@@ -1,25 +1,7 @@
-import { Card, Title, createStyles, } from '@mantine/core'
-import { iCategory } from '.'
+import { Card, Title} from '@mantine/core'
 import { useHover, useMediaQuery } from '@mantine/hooks'
-
-const useStyles = createStyles(() => ({
-    card: {
-        cursor: "pointer",
-        background: "linear-gradient(180deg, rgba(30, 0, 0, 0.75) 0%, rgba(34, 139, 230, 0.55) 90%), url('./src/assets/clothes.jpg')",
-        backdropFilter: "blur(.5)",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        zIndex: 1000,
-        color: "red",
-        transition: ".2s",
-        "&:hover": {
-            boxShadow: "0 0 15px 1px black"
-        }
-    }
-}))
+import { iCategory } from '../Data'
+import { useStyles } from './Styles'
 
 const CircularCard = ({ title }: iCategory) => {
     const { hovered, ref }: { hovered: boolean, ref: any } = useHover()

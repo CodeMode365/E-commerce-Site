@@ -3,21 +3,7 @@ import CircularCard from './CircularCard';
 import { Container, Title, Divider} from '@mantine/core';
 import { Carousel } from '@mantine/carousel';
 import { useMediaQuery } from '@mantine/hooks';
-
-export interface iCategory {
-  title: string;
-}
-
-const Categories: iCategory[] = [
-  { title: "male" },
-  { title: "female" },
-  { title: "All" },
-  { title: "Popular" },
-  { title: "New" },
-  { title: "Shoes" },
-  { title: "Upper" },
-  { title: "Lower" }
-];
+import { Data } from './Data';
 
 const Index: React.FC = () => {
   const smallScreen = useMediaQuery('(min-width:56.25rem)')
@@ -33,7 +19,7 @@ const Index: React.FC = () => {
         py={20}
         loop={true}
       >
-        {Categories.map((cate, ind) => (
+        {Data.map((cate, ind) => (
           <Carousel.Slide key={cate.title + ind}>
             <CircularCard title={cate.title} />
           </Carousel.Slide>

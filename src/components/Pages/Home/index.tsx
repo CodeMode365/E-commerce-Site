@@ -1,8 +1,8 @@
 
-import { Hero } from "../Hero"
-import About from "../About"
-import Category from "../Category/index"
-import Markets from "../Markets"
+import { Hero } from "../../Hero"
+import About from "../../About"
+import Category from "./Category/index"
+import Markets from "./Markets"
 
 const Home = () => {
     return (
