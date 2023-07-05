@@ -1,7 +1,7 @@
 import { Group, Text, Button, Badge, Rating, createStyles, Card, Title } from "@mantine/core"
 import { LazyLoadImage } from "react-lazy-load-image-component"
 import { BiCart } from 'react-icons/bi'
-import { iItems } from "../../assets/Items"
+import { iItems } from "./DummyProducts"
 import { AppDispatch } from "../../Redux/store"
 import { useDispatch } from "react-redux"
 import { addToCart } from "../../Redux/Slices/Cart"

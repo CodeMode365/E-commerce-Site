@@ -1,8 +1,8 @@
 import { useState, lazy, Suspense } from 'react'
 import { Container, SimpleGrid, Box, Skeleton, Divider, Card, Title, Stack, Text, Group, Flex, MultiSelect, NativeSelect } from '@mantine/core'
-import Data, { iItems, iCategory } from '../../../assets/Items'
+import Data, { iItems, iCategory } from '../../Reusable/DummyProducts'
 import { useStyles } from './Styles'
-import { data } from './Data'
+import { Options } from './Options'
 
 const LazyCard = lazy(() => import("../../Reusable/Card"))
 
@@ -19,7 +19,7 @@ const index = () => {
             </Stack>
             <Group className={classes.Filter}>
                 <Text >Filter</Text>
-                <MultiSelect data={data} placeholder='Pick all that you like' />
+                <MultiSelect data={Options} placeholder='Pick all that you like' />
                 <NativeSelect data={["Low to High", "High to Low"]} value={price} onChange={(event) => setPrice(event.currentTarget.value)} />
             </Group>
             <Container >

@@ -1,9 +1,9 @@
-export interface iData {
+export interface iOptions {
     value: string,
     label: string
 }
 
-export const data: iData[] = [
+export const Options: iOptions[] = [
     { value: 'New', label: 'New' },
     { value: 'Trending', label: 'Trending' },
     { value: 'Male', label: 'Male' },

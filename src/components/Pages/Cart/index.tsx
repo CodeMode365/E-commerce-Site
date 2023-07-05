@@ -4,7 +4,7 @@ import { BiMinus, BiPlus, BiTrash } from 'react-icons/bi'
 import { useSelector, useDispatch } from 'react-redux'
 import { AppDispatch, RootState } from '../../../Redux/store'
 import { dcrQuantity, incQuantity, removeItem } from '../../../Redux/Slices/Cart'
-import { iItems } from '../../../assets/Items'
+import { iItems } from '../../Reusable/DummyProducts'
 import Swal from "sweetalert2"
 import React, { useState, useEffect } from 'react'
 import { useStyles } from './Styles'

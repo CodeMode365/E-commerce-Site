@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { iItems } from "../../assets/Items";
+import { iItems } from "../../components/Reusable/DummyProducts";
 
 interface cartItem extends iItems {
     quantity: number;
