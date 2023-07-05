@@ -1,4 +1,4 @@
-import { Group, Text, Button, Badge, Rating, createStyles, Card } from "@mantine/core"
+import { Group, Text, Button, Badge, Rating, createStyles, Card, Title } from "@mantine/core"
 import { LazyLoadImage } from "react-lazy-load-image-component"
 import { BiCart } from 'react-icons/bi'
 import { iItems } from "../../assets/Items"
@@ -61,8 +61,9 @@ const ItemCard = ({ Item }: { Item: iItems }) => {
       <Badge color="red" variant="light" bg={"#dded"}>
         New
       </Badge> */}
-          <Badge variant="gradient" gradient={{ from: 'indigo', to: 'cyan' }}>Sale</Badge>
-          <Badge variant="gradient" gradient={{ from: '#ed6ea0', to: '#ec8c69', deg: 35 }}>New</Badge>
+          {Item.highlight.map((topic, ind) => (
+            <Badge variant="gradient" gradient={{ from: 'teal', to: 'blue', deg: 60 }} key={topic + ind}>{topic}</Badge>
+          ))}
         </Group>
 
         <LazyLoadImage
@@ -89,10 +90,12 @@ const ItemCard = ({ Item }: { Item: iItems }) => {
 
       <Group position="apart" mt={3} mb={2} align="center" >
         <Text weight={500} my={0} mx={"auto"}>{Item.title}</Text>
+        <br />
+        <Title mt={-15} mb={-5} order={3} align="center" mx="auto" color="yellow">${Item.price}</Title>
         <Text fz={12} p={0} color="dimmed" align="center" my={-10} mx={"auto"} >
           Winter Light weight silk
         </Text>
-        <Rating value={3} mx="auto" fz={10} readOnly />
+        <Rating value={Item.rating} mx="auto" fz={10} readOnly />
       </Group>
 
 
