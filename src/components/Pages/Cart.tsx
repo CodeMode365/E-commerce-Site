@@ -31,7 +31,7 @@ const useStyles = createStyles((theme) => ({
         background: theme.colors.green[5]
     },
     DcrBtn: {
-        background: theme.colors.blue[5]
+        background: theme.colors.cyan[5]
     },
     ItemHolder: {
         background: theme.colorScheme == "dark" ? theme.colors.gray[8] : theme.colors.gray[3],
@@ -114,7 +114,7 @@ const Cart = React.memo(() => {
                                                     m={8} src={item.src} width={200} h={100} sx={{ objectPosition: "center" }} />
                                             </Box>}
                                         <Box mx={20} my={8} >
-                                            <Title order={3} sx={{ display: "flex", alignItems: "center" }}>{item.title} <UnstyledButton onClick={() => removeFromCart(item)}><BiTrash color="red" size={24} style={{ marginLeft: 20 }} /></UnstyledButton></Title>
+                                            <Title color="blue" order={3} sx={{ display: "flex", alignItems: "center" }}>{item.title} <UnstyledButton onClick={() => removeFromCart(item)}><BiTrash color="red" size={24} style={{ marginLeft: 20 }} /></UnstyledButton></Title>
                                             <Divider my={2} />
                                             <Text className={""}>Price Per Item:
                                                 <Text display={"inline"} color="yellow" ml={"md"}>${item.price} </Text></Text>
