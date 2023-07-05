@@ -236,10 +236,10 @@ const Navigation: React.FC = () => {
                         <UnstyledButton onClick={() => dispatch(toggleMode())} className={classes.link}>
                             {colorMode === "light" ?
 
-                                (<BiMoon className={classes.icons} size={26} />) :
+                                (<BiMoon className={classes.icons} size={26} style={{ borderRadius: "100%" }} />) :
                                 (
 
-                                    <BiSun className={classes.icons} size={26} />
+                                    <BiSun className={classes.icons} size={26} style={{ borderRadius: "100%" }} />
                                 )
                             }
                         </UnstyledButton>
@@ -266,14 +266,16 @@ const Navigation: React.FC = () => {
                 title="Navigation"
                 className={classes.hiddenDesktop}
                 zIndex={1000000}
+                sx={{ position: "fixed", top: 0, left: 0, zIndex: 500 }}
+
             >
-                <UnstyledButton mr={-20} pr={-20} onClick={() => dispatch(toggleMode())} className={classes.link}>
+                <UnstyledButton display={"inline"} mr={-20} pr={-20} onClick={() => dispatch(toggleMode())} className={classes.link}>
                     {colorMode === "light" ?
 
-                        (<BiMoon className={classes.icons} size={26} />) :
+                        (<BiMoon className={classes.icons} size={26} style={{ borderRadius: "100%" }} />) :
                         (
 
-                            <BiSun className={classes.icons} size={26} />
+                            <BiSun className={classes.icons} size={26} style={{ borderRadius: "100%" }} />
                         )
                     }
                 </UnstyledButton>
