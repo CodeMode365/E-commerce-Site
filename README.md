@@ -19,7 +19,7 @@ This project aims to demonstrate the frontend implementation of an Ecommerce sit
 
 Please note that this project only focuses on the frontend and does not include any backend API integration. It serves as a starting point for developers looking to build an Ecommerce site with a similar tech stack and can be easily extended to incorporate backend functionality. 
 
- ** Note all the Data implemented in the project is a Dummy JSON data **
+ *Note all the Data implemented in the project is a Dummy JSON data*
 
 ## Features
 * Browse and search products
