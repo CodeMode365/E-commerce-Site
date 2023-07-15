@@ -4,12 +4,8 @@ export interface iOptions {
 }
 
 export const Options: iOptions[] = [
-    { value: 'New', label: 'New' },
-    { value: 'Trending', label: 'Trending' },
-    { value: 'Male', label: 'Male' },
-    { value: 'Female', label: 'Female' },
-    { value: 'Upper', label: 'Upper' },
-    { value: 'Lower', label: 'Lower' },
-    { value: 'Shoes', label: 'Shoes' },
-    { value: 'Top', label: 'Top Rated' },
+    { value: 'new', label: 'New' },
+    { value: 'popular', label: 'Popular' },
+    { value: 'male', label: 'Male' },
+    { value: 'female', label: 'Female' },
 ]
