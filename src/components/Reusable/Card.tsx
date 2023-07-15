@@ -55,7 +55,7 @@ const ItemCard = ({ Item }: { Item: iItems }) => {
     <Card shadow="sm" padding="lg" radius="md" withBorder className={classes.wrapper}>
       <Card.Section component="a" href="#" sx={{ cursor: "pointer" }} >
         <Group spacing={"xs"} mx={"auto"} sx={{ position: "absolute", left: 5, zIndex: 50 }} mt={4}>
-          {Item.highlight.slice(0, 2).map((topic, ind) => (
+          {Item.highlight.map((topic, ind) => (
             <Badge variant="gradient" gradient={{ from: 'teal', to: 'blue', deg: 60 }} key={topic + ind}>{topic}</Badge>
           ))}
         </Group>
