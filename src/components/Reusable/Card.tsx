@@ -1,4 +1,4 @@
-import { Group, Text, Button, Badge, Rating, createStyles, Card, Title } from "@mantine/core"
+import { Group, Text, Button, Badge, Rating, createStyles, Card, Title, Image } from "@mantine/core"
 import { LazyLoadImage } from "react-lazy-load-image-component"
 import { BiCart } from 'react-icons/bi'
 import { iItems } from "./DummyProducts"
@@ -15,7 +15,7 @@ const useStyles = createStyles(() => ({
     left: 0,
     top: 0,
     filter: "brightness(.8)",
-    objectFit: "cover"
+    objectFit: "cover",
   },
   wrapper: {
     position: "relative",
@@ -55,7 +55,7 @@ const ItemCard = ({ Item }: { Item: iItems }) => {
     <Card shadow="sm" padding="lg" radius="md" withBorder className={classes.wrapper}>
       <Card.Section component="a" href="#" sx={{ cursor: "pointer" }} >
         <Group spacing={"xs"} mx={"auto"} sx={{ position: "absolute", left: 5, zIndex: 50 }} mt={4}>
-          {Item.highlight.slice(0,2).map((topic, ind) => (
+          {Item.highlight.slice(0, 2).map((topic, ind) => (
             <Badge variant="gradient" gradient={{ from: 'teal', to: 'blue', deg: 60 }} key={topic + ind}>{topic}</Badge>
           ))}
         </Group>
@@ -70,8 +70,7 @@ const ItemCard = ({ Item }: { Item: iItems }) => {
         />
         {
           !isLoaded && (
-            <LazyLoadImage
-              effect="blur"
+            <Image
               // src={Item.src}
               src={'./placeholder.png'}
               height={160}
@@ -83,7 +82,7 @@ const ItemCard = ({ Item }: { Item: iItems }) => {
       </Card.Section>
 
       <Group position="apart" mt={3} mb={2} align="center" >
-        <Text weight={500} my={0} mx={"auto"}>{Item.title}</Text>
+        <Text my={0} mx={"auto"}>{Item.title}</Text>
         <br />
         <Title mt={-15} mb={-5} order={3} align="center" mx="auto" color="yellow">${Item.price}</Title>
         <Text fz={12} p={0} color="dimmed" align="center" my={-10} mx={"auto"} >

@@ -1,4 +1,4 @@
-import { Container, Stack, Title, Box, Card, Flex, Image, Text, Divider, UnstyledButton, createStyles, Grid } from '@mantine/core'
+import { Container, Stack, Title, Box, Card, Flex, Image, Text, Divider, UnstyledButton, Grid } from '@mantine/core'
 import { useMediaQuery } from '@mantine/hooks'
 import { BiMinus, BiPlus, BiTrash } from 'react-icons/bi'
 import { useSelector, useDispatch } from 'react-redux'
@@ -69,12 +69,13 @@ const Cart = React.memo(() => {
                         {cartItems.map((item) => {
                             return (<Card key={item.id}>
                                 <Card.Section>
-                                    <Flex direction={extraSmall ? "column" : "row"} >
+                                    <Flex direction={extraSmall ? "column" : "row"}  >
                                         {!extraSmall &&
-                                            <Box>
+                                            <Box sx={{ position: "relative" }}>
                                                 <Image
+                                                    className={classes.itemImage}
                                                     mx={extraSmall ? "auto" : 0}
-                                                    m={8} src={item.src} width={200} h={100} sx={{ objectPosition: "center" }} />
+                                                    m={8} src={item.src} width={200} h={100} />
                                             </Box>}
                                         <Box mx={20} my={8} >
                                             <Title color="blue" order={3} sx={{ display: "flex", alignItems: "center" }}>{item.title} <UnstyledButton onClick={() => removeFromCart(item)}><BiTrash color="red" size={24} style={{ marginLeft: 20 }} /></UnstyledButton></Title>

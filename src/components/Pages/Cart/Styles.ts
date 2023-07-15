@@ -34,5 +34,14 @@ export const useStyles = createStyles((theme) => ({
         borderRadius: theme.radius.sm,
         padding: theme.spacing.xs
 
+    },
+    itemImage: {
+        width: "100%",
+        // position: "absolute",
+        // top: 0,
+        // left: 0,
+        filter: "brightness(.8)",
+        objectFit: "cover",
+
     }
 }))

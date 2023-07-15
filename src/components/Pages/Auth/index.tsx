@@ -35,7 +35,7 @@ export default function Auth(props: PaperProps) {
         <Container size="xs" my={35}>
             <Paper radius="md" p="xl" withBorder {...props}>
                 <Text size="lg" weight={500}>
-                    Welcome to Mantine, {type} with
+                    Welcome to Our Store, <Text display={"inline"} color="none">{type}</Text> with
                 </Text>
 
                 <Group grow mb="md" mt="md">
