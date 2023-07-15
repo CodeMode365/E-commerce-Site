@@ -25,6 +25,7 @@ const Navigation: React.FC = () => {
     const [linksOpened, { toggle: toggleLinks }] = useDisclosure(false)
     const { classes, theme } = useStyles()
     const { cartItems } = useSelector((state: RootState) => state)
+    const loggedIn = useSelector((state:RootState)=>state.auth.loginStatus)
 
     const colorMode = useSelector((state: RootState) => state.colorMode)
     const dispatch = useDispatch<AppDispatch>()
@@ -34,6 +35,7 @@ const Navigation: React.FC = () => {
         if (path === page.pathname) return true
         return false
     }
+
 
     const links = mockdata.map((item) => (
         <UnstyledButton className={classes.subLink} key={item.title}>
