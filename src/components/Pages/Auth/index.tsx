@@ -13,16 +13,28 @@ import {
     Anchor,
     Stack, Container
 } from '@mantine/core';
-// import { GoogleButton, TwitterButton } from '../SocialButtons/SocialButtons';
+import { useDispatch, useSelector } from 'react-redux';
+import { signUp, singIn } from '../../../Redux/Slices/Auth';
+import { RootState } from '../../../Redux/store';
+import { useEffect } from "react"
+
+interface iCredential {
+    name?: string,
+    email: string,
+    password: string
+    terms: boolean
+}
 
 export default function Auth(props: PaperProps) {
+    const dispatch = useDispatch()
+    const loggedIn = useSelector((state: RootState) => state.auth.loginStatus)
     const [type, toggle] = useToggle(['login', 'register']);
     const form = useForm({
         initialValues: {
             email: '',
             name: '',
             password: '',
-            terms: true,
+            terms: false,
         },
 
         validate: {
@@ -31,6 +43,24 @@ export default function Auth(props: PaperProps) {
         },
     });
 
+    useEffect(() => {
+        if (loggedIn) window.location.href = "/"
+    }, [loggedIn])
+
+
+
+    const handleSubmit = (credentials: iCredential) => {
+        if (type === "login") dispatch(singIn(credentials))
+        if (type === "register") {
+            if (credentials.terms) {
+                console.log("registering")
+                dispatch(signUp(credentials))
+                form.reset()
+            }
+        }
+    }
+
+
     return (
         <Container size="xs" my={35}>
             <Paper radius="md" p="xl" withBorder {...props}>
@@ -38,16 +68,9 @@ export default function Auth(props: PaperProps) {
                     Welcome to Our Store, <Text display={"inline"} color="none">{type}</Text> with
                 </Text>
 
-                <Group grow mb="md" mt="md">
-                    {/* <GoogleButton radius="xl">Google</GoogleButton>
-        <TwitterButton radius="xl">Twitter</TwitterButton> */}
-                    <Button radius={"xl"} variant={"light"} >Google</Button>
-                    <Button radius={"xl"} variant={"light"} > Twitter</Button>
-                </Group>
+                <Divider labelPosition="center" my="lg" />
 
-                <Divider label="Or continue with email" labelPosition="center" my="lg" />
-
-                <form onSubmit={form.onSubmit(() => { })}>
+                <form onSubmit={form.onSubmit(() => handleSubmit(form.values))}>
                     <Stack>
                         {type === 'register' && (
                             <TextInput
@@ -100,7 +123,7 @@ export default function Auth(props: PaperProps) {
                                 ? 'Already have an account? Login'
                                 : "Don't have an account? Register"}
                         </Anchor>
-                        <Button type="submit" radius="xl">
+                        <Button type="submit" radius="xl" >
                             {upperFirst(type)}
                         </Button>
                     </Group>
