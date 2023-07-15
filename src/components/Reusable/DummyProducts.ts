@@ -161,7 +161,7 @@ const Data: iCategory[] = [
             }
             , {
                 id: 400.8,
-                title: "Work Tshirt",
+                title: "Working Tshirt",
                 desc: "",
                 src: "./Items/Shirts/WorkingTshirt.jpg",
                 price: 30,
@@ -222,7 +222,7 @@ const Data: iCategory[] = [
             }
             , {
                 id: 500.6,
-                title: "Tigera Slipper",
+                title: "Slipper",
                 desc: "",
                 src: "./Items/Shoes/Slipper.jpg",
                 price: 30,
